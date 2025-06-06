@@ -35,7 +35,7 @@ const Navbar = () => {
     }
   });
   return (
-    <div className="lg:flex justify-center items-center ">
+    <div className="lg:flex justify-center items-center">
       <motion.div
         variants={{
           visible: { y: 0 },
@@ -43,7 +43,7 @@ const Navbar = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="fixed lg:top-5 navbar bg-gradient-to-l from-white/40 to-white/20 shadow-sm max-w-7xl lg:rounded-lg px-4 backdrop-blur-sm lg:border border-white/30"
+        className="fixed z-10 lg:top-5 navbar bg-gradient-to-l from-white/40 to-white/20 shadow-sm max-w-7xl lg:rounded-lg px-4 backdrop-blur-sm lg:border border-white/30"
       >
         <div className="navbar-start">
           <div className="dropdown">
@@ -84,7 +84,7 @@ const Navbar = () => {
             <img
               onClick={() => setResponsive(!responsive)}
               src={profilePic}
-              className="rounded-full w-9 aspect-square object-cover"
+              className="rounded-full w-9 aspect-square object-cover border-2 border-secondary"
               alt=""
             />
             <ul
@@ -106,7 +106,7 @@ const Navbar = () => {
           </Link>
           <Link
             to="/signUp"
-            className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 "
+            className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150"
           >
             Sign Up
           </Link>
