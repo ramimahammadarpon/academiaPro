@@ -1,15 +1,56 @@
-import React from "react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import React, { useState } from "react";
+import profilePic from "../assets/profilePic.jpg";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" to="/">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" to="/courses">
+          Courses
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" vto="/addCourse">
+          Add Course
+        </NavLink>
+      </li>
+    </>
+  );
+  const [responsive, setResponsive] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const prevVal = scrollY.getPrevious();
+    if (latest > prevVal && latest > 200) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
   return (
-    <div>
-      <div className="fixed navbar bg-gradient-to-r from-white/50 to-white/20 shadow-sm px-20 backdrop-blur-sm">
+    <div className="lg:flex justify-center items-center ">
+      <motion.div
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: -100 },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="fixed lg:top-5 navbar bg-gradient-to-l from-white/40 to-white/20 shadow-sm max-w-7xl lg:rounded-lg px-4 backdrop-blur-sm lg:border border-white/30"
+      >
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 text-secondary"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -25,56 +66,52 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100/40 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="text-xl">
+            <span className="text-primary font-medium text-2xl">Academia</span>
+            <span className="text-secondary text-2xl">Pro</span>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+          <ul className="menu menu-horizontal px-1 text-lg">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end flex gap-5">
+          <div className="relative">
+            <img
+              onClick={() => setResponsive(!responsive)}
+              src={profilePic}
+              className="rounded-full w-9 aspect-square object-cover"
+              alt=""
+            />
+            <ul
+              className={`absolute lg:hidden right-0 w-40 text-right top-13 bg-base-100/40 p-2 rounded-lg space-y-2 transition-all duration-75 ease-in ${
+                responsive
+                  ? "scale-100 opacity-100 visible pointer-events-auto"
+                  : "scale-90 opacity-0 invisible pointer-events-none"
+              }`}
+            >
+              <li>Login</li>
+              <li>Sign Up</li>
+            </ul>
+          </div>
+          <Link
+            to="/login"
+            className="hidden lg:inline-block px-4 py-1  text-lg bg-gradient-to-r from-primary to-secondary text-white rounded-sm hover:bg-none hover:border-2 border-primary hover:text-primary transform hover:scale-105 transition-all duration-150"
+          >
+            Login
+          </Link>
+          <Link
+            to="/signUp"
+            className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 "
+          >
+            Sign Up
+          </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
