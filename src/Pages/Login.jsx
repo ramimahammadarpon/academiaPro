@@ -11,7 +11,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
-    const {googleSignUp} = useContext(AuthContext);
+    const {googleSignUp, gitHubSignUp} = useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const handleLoginForm = (e) => {
     e.preventDefault();
@@ -25,6 +25,13 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleGitHubSignUp = () => {
+      gitHubSignUp().then(result => {
+        console.log(result);
+      }).catch(err=>{
+        console.log(err);
+      })}
 
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60">
@@ -50,7 +57,7 @@ const Login = () => {
                     Login Now!
                   </h1>
                   <div className="flex justify-between items-center mr-4.5 mt-3">
-                    <button onClick={handleGoogleSignUp} type="button" className="btn bg-black text-xs text-white border-black">
+                    <button onClick={handleGitHubSignUp} type="button" className="btn bg-black text-xs text-white border-black">
                       <svg
                         aria-label="GitHub logo"
                         width="16"

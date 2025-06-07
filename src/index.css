@@ -6,3 +6,7 @@
   --color-primary: #7a60ec;
   --color-secondary: #b74ca8;
 }
+
+.active {
+  @apply bg-gradient-to-l from-primary to-secondary text-white
+}

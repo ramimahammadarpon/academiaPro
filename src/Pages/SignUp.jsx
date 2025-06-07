@@ -12,7 +12,7 @@ import { MdAddPhotoAlternate, MdAlternateEmail } from "react-icons/md";
 import { AuthContext } from "../Context/AuthContext";
 
 const SignUp = () => {
-    const {googleSignUp} = useContext(AuthContext);
+    const {googleSignUp, gitHubSignUp} = useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const [confirmPass, setConfirmPass] = useState(true);
   const [err, setErr] = useState('');
@@ -40,6 +40,15 @@ const SignUp = () => {
         console.log(result)
     }).catch(err => console.log(err))
   }
+
+  const handleGitHubSignUp = () => {
+      gitHubSignUp().then(result => {
+        console.log(result);
+      }).catch(err=>{
+        console.log(err);
+      })
+  }
+
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10">
       <div className="hero min-h-screen">
@@ -64,7 +73,7 @@ const SignUp = () => {
                     Sign Up Now
                   </h1>
                   <div className="flex justify-between items-center mr-4.5 mt-3">
-                    <button type="button" className="btn bg-black text-xs text-white border-black">
+                    <button onClick={handleGitHubSignUp} type="button" className="btn bg-black text-xs text-white border-black">
                       <svg
                         aria-label="GitHub logo"
                         width="16"

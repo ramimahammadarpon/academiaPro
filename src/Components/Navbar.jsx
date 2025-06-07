@@ -36,7 +36,7 @@ const Navbar = () => {
         {user && (
           <NavLink
             className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
-            vto="/addCourse"
+            to="/addCourse"
           >
             Add Course
           </NavLink>
@@ -98,7 +98,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg">{links}</ul>
+          <ul className="menu menu-horizontal px-1 text-lg gap-3">{links}</ul>
         </div>
         <div className="navbar-end flex gap-5">
           <div className="relative">
