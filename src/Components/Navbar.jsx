@@ -1,26 +1,46 @@
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import profilePic from "../assets/profilePic.jpg";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+  console.log(user);
+  const handleSignOut = () => {
+    signOutUser().then(()=>{
+      console.log("Sign Out Successfull")
+    }).catch(err=> {
+      console.log(err)
+    })
+  }
   const links = (
     <>
       <li>
-        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" to="/">
+        <NavLink
+          className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+          to="/"
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" to="/courses">
+        <NavLink
+          className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+          to="/courses"
+        >
           Courses
         </NavLink>
       </li>
       <li>
-        <NavLink className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100" vto="/addCourse">
-          Add Course
-        </NavLink>
+        {user && (
+          <NavLink
+            className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+            vto="/addCourse"
+          >
+            Add Course
+          </NavLink>
+        )}
       </li>
     </>
   );
@@ -82,12 +102,17 @@ const Navbar = () => {
         </div>
         <div className="navbar-end flex gap-5">
           <div className="relative">
-            <img
+           {user?  <img
               onClick={() => setResponsive(!responsive)}
-              src={profilePic}
+              src={user.photoURL}
               className="rounded-full w-9 aspect-square object-cover border-2 border-secondary"
               alt=""
-            />
+            /> :  <img
+              onClick={() => setResponsive(!responsive)}
+              src={profilePic}
+              className="lg:hidden rounded-full w-9 aspect-square object-cover border-2 border-secondary"
+              alt=""
+            />}
             <ul
               className={`absolute lg:hidden right-0 w-40 text-right top-13 bg-base-100/40 p-2 rounded-lg space-y-2 transition-all duration-75 ease-in ${
                 responsive
@@ -95,22 +120,31 @@ const Navbar = () => {
                   : "scale-90 opacity-0 invisible pointer-events-none"
               }`}
             >
-              <li>Login</li>
-              <li>Sign Up</li>
+              {user? <> <p className="text-primary">{user.displayName}</p> <button onClick={handleSignOut}>Sign Out</button></> : <><li><NavLink to="/login">Login</NavLink></li>
+              <li><NavLink to="/signUp">Sign Up</NavLink></li></>}
             </ul>
           </div>
-          <Link
-            to="/login"
-            className="hidden lg:inline-block px-4 py-1  text-lg bg-gradient-to-r from-primary to-secondary text-white rounded-sm hover:bg-none hover:border-2 border-primary hover:text-primary transform hover:scale-105 transition-all duration-150"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signUp"
-            className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150"
-          >
-            Sign Up
-          </Link>
+          {user ? (
+            <button onClick={handleSignOut} className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 cursor-pointer">
+              Sign Out
+            </button>
+          ) : (
+            <>
+              {" "}
+              <Link
+                to="/login"
+                className="hidden lg:inline-block px-4 py-1  text-lg bg-gradient-to-r from-primary to-secondary text-white rounded-sm hover:bg-none hover:border-2 border-primary hover:text-primary transform hover:scale-105 transition-all duration-150"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signUp"
+                className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </motion.div>
     </div>
