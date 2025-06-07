@@ -11,11 +11,20 @@ import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
-    const {googleSignUp, gitHubSignUp} = useContext(AuthContext);
+    const {googleSignUp, gitHubSignUp, loginWithEmail} = useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const handleLoginForm = (e) => {
     e.preventDefault();
-    console.log("this is login form");
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    loginWithEmail(email, password).then(result=>{
+      console.log(result);
+    }).catch(err=>{
+      console.log(err);
+    })
   };
 
   const handleGoogleSignUp = () => {
@@ -115,6 +124,7 @@ const Login = () => {
                     name="email"
                     className="input focus:outline-secondary focus:border-primary pl-10"
                     placeholder="Email"
+                    required
                   />
                   <FaRegUser
                     size={15}
@@ -128,6 +138,7 @@ const Login = () => {
                     name="password"
                     className="input focus:outline-secondary focus:border-primary px-10"
                     placeholder="Password"
+                    required
                   />
                   <GrKey size={15} className="absolute top-3.5 left-3 z-[1]" />
                   <button
