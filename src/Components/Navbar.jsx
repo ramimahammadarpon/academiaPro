@@ -2,6 +2,7 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import React, { useState } from "react";
 import profilePic from "../assets/profilePic.jpg";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
   const links = (

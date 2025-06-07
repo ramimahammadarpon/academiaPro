@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ornament1 from "../assets/Lottie/ornament.json";
 import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
@@ -9,8 +9,10 @@ import { GrKey, GrValidate } from "react-icons/gr";
 import { easeIn, motion } from "motion/react";
 import { Link } from "react-router";
 import { MdAddPhotoAlternate, MdAlternateEmail } from "react-icons/md";
+import { AuthContext } from "../Context/AuthContext";
 
 const SignUp = () => {
+    const {googleSignUp} = useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const [confirmPass, setConfirmPass] = useState(true);
   const [err, setErr] = useState('');
@@ -33,8 +35,13 @@ const SignUp = () => {
         return;
     }
   };
+  const handleGoogleSignUp = () => {
+    googleSignUp().then(result => {
+        console.log(result)
+    }).catch(err => console.log(err))
+  }
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10">
       <div className="hero min-h-screen">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
@@ -57,7 +64,7 @@ const SignUp = () => {
                     Sign Up Now
                   </h1>
                   <div className="flex justify-between items-center mr-4.5 mt-3">
-                    <button className="btn bg-black text-xs text-white border-black">
+                    <button type="button" className="btn bg-black text-xs text-white border-black">
                       <svg
                         aria-label="GitHub logo"
                         width="16"
@@ -73,7 +80,7 @@ const SignUp = () => {
                       GitHub Login
                     </button>
                     <div className="divider divider-horizontal">OR</div>
-                    <button className="btn bg-white text-xs text-black border-[#e5e5e5]">
+                    <button type="button" onClick={handleGoogleSignUp} className="btn bg-white text-xs text-black border-[#e5e5e5]">
                       <svg
                         aria-label="Google logo"
                         width="16"
