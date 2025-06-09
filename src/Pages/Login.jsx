@@ -3,8 +3,6 @@ import React, { useContext, useState } from "react";
 import ornament1 from "../assets/Lottie/ornament.json";
 import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
-import { IoKeyOutline } from "react-icons/io5";
-import { TiKeyOutline } from "react-icons/ti";
 import { GrKey } from "react-icons/gr";
 import { easeIn, motion } from "motion/react";
 import { Link } from "react-router";
@@ -158,7 +156,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="px-3 py-1 lg:mr-4 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-x-105 transition-all duration-150  cursor-pointer"
+                  className="px-3 py-1 lg:mr-4 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-x-103 transition-all duration-150  cursor-pointer"
                 >
                   Login
                 </button>

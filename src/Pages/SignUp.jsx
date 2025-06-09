@@ -44,7 +44,7 @@ const SignUp = () => {
         photoURL: photoURL
       }).then(()=>{
         console.log("Profile Updated");
-        setUser({...user, displayName:name, photoURL:photoURL});
+        setUser({...result.user, displayName:name, photoURL:photoURL});
       }).catch(err=> {
         console.log(err);
       })
@@ -246,7 +246,7 @@ const SignUp = () => {
                 {err && <p className="text-red-500 mr-5">{err}</p>}
                 <button
                   type="submit"
-                  className="mt-3 px-3 py-1 lg:mr-4 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-x-105 transition-all duration-150  cursor-pointer"
+                  className="mt-3 px-3 py-1 lg:mr-4 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-x-103 transition-all duration-150  cursor-pointer"
                 >
                   Sign Up
                 </button>
