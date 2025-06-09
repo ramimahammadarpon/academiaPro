@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from '../Components/Banner';
+import LatestCourses from '../Components/LatestCourses';
 
 const Home = () => {
     return (
@@ -7,6 +8,11 @@ const Home = () => {
             <header>
                 <Banner></Banner>
             </header>
+            <main className='max-w-7xl mx-auto'>
+                <section>
+                    <LatestCourses></LatestCourses>
+                </section>
+            </main>
         </div>
     );
 };

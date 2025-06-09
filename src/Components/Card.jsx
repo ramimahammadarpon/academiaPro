@@ -1,0 +1,32 @@
+import { animate } from 'motion';
+import { motion } from 'motion/react';
+import React from 'react';
+import { FaHourglassEnd } from 'react-icons/fa';
+import { MdDateRange } from 'react-icons/md';
+import { Link } from 'react-router';
+
+const Card = ({course}) => {
+    return (
+        <Link to={`/courseDetails/${course._id}`} className='shadow-2xl rounded-xl overflow-hidden'>
+           <motion.div
+           whileHover={{scale:1.05}}
+           transition={{duration:.3}}
+           className={`relative bg-[url(${course.photoURL})] bg-cover bg-center h-60`}>
+            <motion.div
+            initial={{opacity:0}}
+            whileHover={{opacity:1}}
+            transition={{duration:.5}}
+            className='absolute bg-primary/40 w-full h-full flex justify-center items-center'>
+                <Link to={`/courseDetails/${course._id}`} className='px-4 py-2 bg-white text-black font-medium z-[1] rounded-sm'>View Details</Link>
+            </motion.div>
+           </motion.div>
+           <div className='p-4'>
+            <h1 className='text-2xl font-semibold text-primary'>{course.courseTitle}</h1>
+            <p className='p-2 flex items-center gap-3'><FaHourglassEnd size={15} /> {course.duration}</p>
+            <p className='p-2 flex items-center gap-3 text-xs font-extralight'><MdDateRange size={15} />{course.releasedDate}</p>
+           </div>
+        </Link>
+    );
+};
+
+export default Card;

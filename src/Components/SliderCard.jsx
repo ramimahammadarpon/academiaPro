@@ -8,16 +8,16 @@ import { MdDateRange } from "react-icons/md";
 const SliderCard = ({ card }) => {
   const { photoURL, courseTitle, description, duration, email, releasedDate } =
     card;
-  console.log(photoURL);
+  // console.log(photoURL);
   const [hover, setHover] = useState(false);
-  console.log(hover);
+  // console.log(hover);
 
   return (
     <div className="px-2 w-full">
       <div
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className={`lg:h-[90vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-[url(${photoURL})] bg-no-repeat bg-cover bg-center relative overflow-hidden`}
+        className={`lg:h-[85vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-[url(${photoURL})] bg-no-repeat bg-cover bg-center relative overflow-hidden`}
       >
         <div className="w-full h-full bg-primary/20 backdrop-blur-xs flex lg:hidden flex-col justify-center items-center">
           <div className="w-2/3">

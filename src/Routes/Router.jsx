@@ -5,6 +5,7 @@ import Login from "../Pages/Login";
 import SignUp from "../Pages/SignUp";
 import Courses from "../Pages/Courses";
 import AddCourse from "../Pages/AddCourse";
+import CourseDetails from "../Pages/CourseDetails";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: 'AddCourse',
                 Component: AddCourse
+            },
+            {
+                path: 'courseDetails/:id',
+                Component: CourseDetails
             }
         ]
     }
