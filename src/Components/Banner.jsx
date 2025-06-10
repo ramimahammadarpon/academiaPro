@@ -39,7 +39,7 @@ const Banner = () => {
   console.log(cards)
 
   return (
-    <div className="mx-3 pt-20 lg:pt-14">
+    <div className="mx-3">
       <div className="slider-container">
         <Slider {...settings}>
           {

@@ -6,6 +6,7 @@ import { auth } from '../firebse.init';
 const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const googleSignUp = () => {
         const provider = new GoogleAuthProvider();
@@ -34,6 +35,7 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, user=>{
             console.log(user);
             setUser(user);
+            setLoading(false);
         })
         return unsubscribe;
     },[])
@@ -46,6 +48,7 @@ const AuthProvider = ({children}) => {
         signOutUser,
         user, 
         setUser,
+        loading
     }
     return (
         <AuthContext value={value}>

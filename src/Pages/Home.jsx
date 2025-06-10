@@ -4,7 +4,7 @@ import LatestCourses from '../Components/LatestCourses';
 
 const Home = () => {
     return (
-        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen">
+        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20">
             <header>
                 <Banner></Banner>
             </header>
