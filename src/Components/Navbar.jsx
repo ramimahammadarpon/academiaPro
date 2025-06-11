@@ -3,17 +3,20 @@ import React, { useContext, useState } from "react";
 import profilePic from "../assets/profilePic.jpg";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import { li } from "motion/react-client";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   console.log(user);
   const handleSignOut = () => {
-    signOutUser().then(()=>{
-      console.log("Sign Out Successfull")
-    }).catch(err=> {
-      console.log(err)
-    })
-  }
+    signOutUser()
+      .then(() => {
+        console.log("Sign Out Successfull");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const links = (
     <>
       <li>
@@ -32,16 +35,24 @@ const Navbar = () => {
           Courses
         </NavLink>
       </li>
-      <li>
-        {user && (
-          <NavLink
+      {user && (
+        <>
+          <li>
+            <NavLink
+              className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+              to="/addCourse"
+            >
+              Add Course
+            </NavLink>
+          </li>
+          <li><NavLink
             className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
-            to="/addCourse"
+            to="/manageCourses"
           >
-            Add Course
-          </NavLink>
-        )}
-      </li>
+            Manage Courses
+          </NavLink></li>
+        </>
+      )}
     </>
   );
   const [responsive, setResponsive] = useState(false);
@@ -102,17 +113,21 @@ const Navbar = () => {
         </div>
         <div className="navbar-end flex gap-5">
           <div className="relative">
-           {user?  <img
-              onClick={() => setResponsive(!responsive)}
-              src={user.photoURL}
-              className="rounded-full w-9 aspect-square object-cover border-2 border-secondary"
-              alt=""
-            /> :  <img
-              onClick={() => setResponsive(!responsive)}
-              src={profilePic}
-              className="lg:hidden rounded-full w-9 aspect-square object-cover border-2 border-secondary"
-              alt=""
-            />}
+            {user ? (
+              <img
+                onClick={() => setResponsive(!responsive)}
+                src={user.photoURL}
+                className="rounded-full w-9 aspect-square object-cover border-2 border-secondary"
+                alt=""
+              />
+            ) : (
+              <img
+                onClick={() => setResponsive(!responsive)}
+                src={profilePic}
+                className="lg:hidden rounded-full w-9 aspect-square object-cover border-2 border-secondary"
+                alt=""
+              />
+            )}
             <ul
               className={`absolute lg:hidden right-0 w-40 text-right top-13 bg-base-100/40 p-2 rounded-lg space-y-2 transition-all duration-75 ease-in ${
                 responsive
@@ -120,12 +135,29 @@ const Navbar = () => {
                   : "scale-90 opacity-0 invisible pointer-events-none"
               }`}
             >
-              {user? <> <p className="text-primary">{user.displayName}</p> <button onClick={handleSignOut}>Sign Out</button></> : <><li><NavLink to="/login">Login</NavLink></li>
-              <li><NavLink to="/signUp">Sign Up</NavLink></li></>}
+              {user ? (
+                <>
+                  {" "}
+                  <p className="text-primary">{user.displayName}</p>{" "}
+                  <button onClick={handleSignOut}>Sign Out</button>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/signUp">Sign Up</NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           {user ? (
-            <button onClick={handleSignOut} className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 cursor-pointer">
+            <button
+              onClick={handleSignOut}
+              className="hidden lg:inline-block px-3 py-1 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 cursor-pointer"
+            >
               Sign Out
             </button>
           ) : (
