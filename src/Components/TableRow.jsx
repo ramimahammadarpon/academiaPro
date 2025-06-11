@@ -33,7 +33,7 @@ const TableRow = ({index, course}) => {
       <td>{course.duration}</td>
       <th className="flex items-center gap-4">
         <MotionLink to={`/courseDetails/${course._id}`} className="text-primary hover:bg-green-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-green-500 hover:text-green-500 cursor-pointer"><FaInfoCircle size={20} /></MotionLink>
-        <button className="text-primary hover:bg-green-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-green-500 hover:text-green-500 cursor-pointer"><FaEdit size={20} /></button>
+        <MotionLink to={`/editCourse/${course._id}`} className="text-primary hover:bg-green-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-green-500 hover:text-green-500 cursor-pointer"><FaEdit size={20} /></MotionLink>
         <button className="text-orange-400 hover:bg-red-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-red-500 hover:text-red-500 cursor-pointer"><MdDelete size={25} /></button>
       </th>
     </tr>
