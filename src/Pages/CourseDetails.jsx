@@ -177,7 +177,7 @@ const CourseDetails = () => {
                 disabled={enrolled.length>=3 || seat>=10}
                 className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${enrolled.length>=3 || seat>=10 ? "cursor-not-allowed bg-stone-400": "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"}`}
               >
-                {enrolled.length>=3? "Reached Enrollment Limit": `Enroll (Seats Remaining ${10 - seat})`}
+                {enrolled.length>=3? "Reached Enrollment Limit": `${seat>=10?`No Seats Left`: `Enroll (Seats Remaining - ${10-seat})`}`}
               </button>
             )}
           </div>
