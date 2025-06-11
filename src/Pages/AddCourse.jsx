@@ -16,6 +16,8 @@ const AddCourse = () => {
     const form = e.target;
     const formData = new FormData(form);
     const formVal = Object.fromEntries(formData.entries());
+    formVal.enrollment = 0;
+    formVal.usedSeats = 0;
     console.log("This is Handle add course", formVal);
 
     axios.post('http://localhost:3000/courses', formVal).then(res=> console.log(res.data)).catch(err=> console.log(err));
