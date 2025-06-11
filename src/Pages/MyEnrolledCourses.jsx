@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 import Lottie from "lottie-react";
 import ornament1 from "../assets/Lottie/ornament.json";
-import { AuthContext } from "../Context/AuthContext";
 import { easeIn, motion } from "motion/react";
 import TableRow from "../Components/TableRow";
+import EnrollmentTable from '../Components/EnrollmentTable';
 
-const ManageCourses = () => {
+const MyEnrolledCourses = () => {
     const {user} = useContext(AuthContext);
-    const [courses, setCourses] = useState([]);
-    console.log(courses);
+    const [enrollment, setEnrollment] = useState([]);
     useEffect(()=> {
-        fetch(`http://localhost:3000/courses?email=${user?.email}`).then(res=> res.json()).then(data=> setCourses(data));
+        fetch(`http://localhost:3000/enrollment?email=${user?.email}`).then(res=>res.json()).then(data=> setEnrollment(data));
     }, [user])
-  return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32 py-20">
+    return (
+        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32 py-20">
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 100 }}
@@ -21,7 +21,7 @@ const ManageCourses = () => {
         className="shadow-2xl rounded-lg p-4 max-w-6xl mx-5 lg:mx-auto bg-base-100/20 backdrop-blur-md"
       >
         <h1 className="text-2xl text-center text-primary font-bold mb-10">
-          Manage Courses
+          My Enrolled Courses
         </h1>
 
         <div className="overflow-x-auto">
@@ -33,13 +33,12 @@ const ManageCourses = () => {
                     No.
                 </th>
                 <th>Course Name</th>
-                <th>Description</th>
-                <th>Released Date</th>
+                <th>Duration</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {courses.map((course,index)=> <TableRow key={index} setCourses={setCourses} courses={courses} index={index} course={course} ></TableRow>)}
+              {enrollment.map((enroll,index)=> <EnrollmentTable key={index} enroll={enroll} index={index} enrollment={enrollment} setEnrollment={setEnrollment}></EnrollmentTable>)}
             </tbody>
           </table>
         </div>
@@ -57,7 +56,7 @@ const ManageCourses = () => {
         loop={true}
       ></Lottie>
     </div>
-  );
+    );
 };
 
-export default ManageCourses;
+export default MyEnrolledCourses;

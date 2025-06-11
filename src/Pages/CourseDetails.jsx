@@ -24,7 +24,7 @@ const CourseDetails = () => {
   console.log(enrolled);
   console.log(alreadyEnrolled);
   useEffect(() => {
-    fetch(`http://localhost:3000/course/${id}`)
+    fetch(`http://localhost:3000/courses/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
@@ -52,6 +52,9 @@ const CourseDetails = () => {
     const enrollment = {
       course_id: course._id,
       course_name: course.courseTitle,
+      course_photoURL: course.photoURL,
+      course_duration: course.duration,
+      creator_email: course.email,
       user_email: user.email,
     };
     console.log(enrollment);
@@ -72,7 +75,7 @@ const CourseDetails = () => {
         } else {
           setAlreadyEnrolled(false);
         }
-        axios.patch(`http://localhost:3000/course/${id}`, {
+        axios.patch(`http://localhost:3000/courses/${id}`, {
           enrollment: enrollmentCount + 1,
           usedSeats: seat + 1
         }).then(res=> {

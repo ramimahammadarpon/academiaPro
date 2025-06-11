@@ -1,10 +1,22 @@
+import axios from "axios";
 import { motion } from "motion/react";
 import React from "react";
 import { FaEdit, FaInfoCircle } from "react-icons/fa";
 import { MdDelete, MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router";
 
-const TableRow = ({index, course}) => {
+const TableRow = ({index, course, setCourses, courses}) => {
+    const handleDeleteCourse = () => {
+        console.log("This is Handle Delete Course");
+        axios.delete(`http://localhost:3000/courses/${course._id}`).then(res=> {
+            console.log(res.data);
+            const filteredCourses = courses.filter(crs => crs._id !== course._id);
+            setCourses(filteredCourses);
+            if(res.data.deletedCount === 1){
+                axios.delete(`http://localhost:3000/enrollmentByCourse/${course._id}`).then(res=> console.log(res.data))
+            }
+        })
+    }
   const MotionLink = motion(Link);
   return (
     <tr>
@@ -34,7 +46,7 @@ const TableRow = ({index, course}) => {
       <th className="flex items-center gap-4">
         <MotionLink to={`/courseDetails/${course._id}`} className="text-primary hover:bg-green-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-green-500 hover:text-green-500 cursor-pointer"><FaInfoCircle size={20} /></MotionLink>
         <MotionLink to={`/editCourse/${course._id}`} className="text-primary hover:bg-green-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-green-500 hover:text-green-500 cursor-pointer"><FaEdit size={20} /></MotionLink>
-        <button className="text-orange-400 hover:bg-red-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-red-500 hover:text-red-500 cursor-pointer"><MdDelete size={25} /></button>
+        <button onClick={handleDeleteCourse} className="text-orange-400 hover:bg-red-500/40 hover:backdrop-blur-sm hover:shadow-lg shadow-red-500 hover:text-red-500 cursor-pointer"><MdDelete size={25} /></button>
       </th>
     </tr>
   );

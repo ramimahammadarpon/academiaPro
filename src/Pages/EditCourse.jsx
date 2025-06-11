@@ -12,7 +12,7 @@ const EditCourse = () => {
     console.log(course);
     console.log(id);
     useEffect(()=> {
-        fetch(`http://localhost:3000/course/${id}`).then(res=>res.json()).then(data=> setCourse(data))
+        fetch(`http://localhost:3000/courses/${id}`).then(res=>res.json()).then(data=> setCourse(data))
     }, [id])
     const handleEditCourse = e => {
         e.preventDefault();
@@ -21,7 +21,7 @@ const EditCourse = () => {
         const updatedFormVal = Object.fromEntries(updatedFormData.entries());
 
         console.log("This is Edit Course", updatedFormVal);
-        axios.patch(`http://localhost:3000/course/${id}`, updatedFormVal).then(res=> console.log(res.data))
+        axios.patch(`http://localhost:3000/courses/${id}`, updatedFormVal).then(res=> console.log(res.data))
     }
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32">
@@ -45,7 +45,7 @@ const EditCourse = () => {
               name="courseTitle"
               className="input w-full"
               placeholder="Enter Course Title"
-              defaultValue={course.courseTitle}
+              defaultValue={course?.courseTitle}
               required
             />
           </fieldset>
@@ -57,7 +57,7 @@ const EditCourse = () => {
               name="photoURL"
               className="input w-full"
               placeholder="Enter Photo URL"
-              defaultValue={course.photoURL}
+              defaultValue={course?.photoURL}
               required
             />
           </fieldset>
@@ -67,7 +67,7 @@ const EditCourse = () => {
             <input
               type="text"
               name="releasedDate"
-              defaultValue={course.releasedDate}
+              defaultValue={course?.releasedDate}
               required
               className="input w-full"
               readOnly
@@ -81,7 +81,7 @@ const EditCourse = () => {
               name="duration"
               className="input w-full"
               placeholder="Enter Course Duration"
-              defaultValue={course.duration}
+              defaultValue={course?.duration}
               required
             />
           </fieldset>
@@ -90,7 +90,7 @@ const EditCourse = () => {
             <label className="label">Course Creator's Name (Read Only)</label>
             <input
               name="name"
-              defaultValue={course.name}
+              defaultValue={course?.name}
               type="text"
               className="input w-full"
               placeholder="Enter Your Name"
@@ -103,7 +103,7 @@ const EditCourse = () => {
             <input
               type="email"
               name="email"
-              defaultValue={course.email}
+              defaultValue={course?.email}
               className="input w-full"
               placeholder="Enter Your Email"
               readOnly
@@ -117,7 +117,7 @@ const EditCourse = () => {
               name="description"
               className="input w-full"
               placeholder="Enter Course Description"
-              defaultValue={course.description}
+              defaultValue={course?.description}
               required
             />
           </fieldset>

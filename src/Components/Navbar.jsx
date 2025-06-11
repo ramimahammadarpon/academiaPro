@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import profilePic from "../assets/profilePic.jpg";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import { li } from "motion/react-client";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -50,6 +49,12 @@ const Navbar = () => {
             to="/manageCourses"
           >
             Manage Courses
+          </NavLink></li>
+          <li><NavLink
+            className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+            to="/myEnrolledCourses"
+          >
+            My Enrolled Courses
           </NavLink></li>
         </>
       )}

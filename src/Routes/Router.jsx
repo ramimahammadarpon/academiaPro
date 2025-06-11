@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManageCourses from "../Pages/ManageCourses";
 import { path } from "motion/react-client";
 import EditCourse from "../Pages/EditCourse";
+import MyEnrolledCourses from "../Pages/MyEnrolledCourses";
 
 export const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: 'editCourse/:id',
                 element: <PrivateRoute><EditCourse></EditCourse></PrivateRoute>
+            },
+            {
+                path: 'myEnrolledCourses',
+                element: <PrivateRoute><MyEnrolledCourses></MyEnrolledCourses></PrivateRoute>
             }
         ]
     }
