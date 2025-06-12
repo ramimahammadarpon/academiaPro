@@ -20,7 +20,7 @@ const Card = ({ course, index }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
           style={{backgroundImage: `url(${course?.photoURL}`}}
-          className={`relative bg-cover bg-center h-60`}
+          className={`relative bg-cover bg-center bg-no-repeat h-60`}
         >
           <motion.div
             initial={{ opacity: 0 }}

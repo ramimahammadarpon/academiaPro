@@ -13,13 +13,14 @@ import { toast } from "react-toastify";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const { id } = useParams();
   console.log(id);
   const [course, setCourse] = useState();
   const [enrolled, setEnrolled] = useState([]);
   const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
-  const [seat, setSeat] = useState();
-  const [enrollmentCount, setEnrollmentCount] = useState();
+  const [seat, setSeat] = useState(0);
+  const [enrollmentCount, setEnrollmentCount] = useState(0);
   const [dataByEmail, setDataByEmail] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -60,7 +61,7 @@ const CourseDetails = () => {
       course_photoURL: course.photoURL,
       course_duration: course.duration,
       creator_email: course.email,
-      user_email: user.email,
+      user_email: user?.email,
     };
     console.log(enrollment);
 
@@ -203,9 +204,9 @@ const CourseDetails = () => {
                 ) : (
                   <button
                     onClick={handleEnrollment}
-                    disabled={enrolled.length >= 3 || seat >= 10}
+                    disabled={!user || enrolled.length >= 3 || seat >= 10}
                     className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${
-                      enrolled.length >= 3 || seat >= 10
+                      !user || enrolled.length >= 3 || seat >= 10
                         ? "cursor-not-allowed bg-stone-400"
                         : "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"
                     }`}
@@ -215,7 +216,7 @@ const CourseDetails = () => {
                       : `${
                           seat >= 10
                             ? `No Seats Left`
-                            : `Enroll (Seats Remaining - ${10 - seat})`
+                            : `${!user? `Login or Sign Up to Enroll`:`Enroll (Seats Remaining - ${10 - seat})`}`
                         }`}
                   </button>
                 )}
