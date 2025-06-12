@@ -11,6 +11,7 @@ import ManageCourses from "../Pages/ManageCourses";
 import { path } from "motion/react-client";
 import EditCourse from "../Pages/EditCourse";
 import MyEnrolledCourses from "../Pages/MyEnrolledCourses";
+import Error from "../Pages/Error";
 
 export const router = createBrowserRouter([
     {
@@ -54,5 +55,9 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><MyEnrolledCourses></MyEnrolledCourses></PrivateRoute>
             }
         ]
+    }, 
+    {
+        path: '/*', 
+        Component: Error
     }
 ])

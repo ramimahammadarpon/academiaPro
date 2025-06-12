@@ -3,74 +3,87 @@ import React, { useContext, useEffect, useState } from "react";
 import ornament1 from "../assets/Lottie/ornament.json";
 import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
-import { IoKeyOutline } from "react-icons/io5";
-import { TiKeyOutline } from "react-icons/ti";
 import { GrKey, GrValidate } from "react-icons/gr";
 import { easeIn, motion } from "motion/react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { MdAddPhotoAlternate, MdAlternateEmail } from "react-icons/md";
 import { AuthContext } from "../Context/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebse.init";
 
 const SignUp = () => {
+  useEffect(() => {
+    document.title = "AcademiaPro | Sign Up";
+  }, []);
 
-  useEffect(()=>{
-         document.title = "AcademiaPro | Sign Up";
-    }, [])
-
-    const {googleSignUp, gitHubSignUp, signUpwithEmail, setUser, user} = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  console.log(location?.state);
+  const from = location.state || '/';
+  const { googleSignUp, gitHubSignUp, signUpwithEmail, setUser, user } =
+    useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const [confirmPass, setConfirmPass] = useState(true);
-  const [err, setErr] = useState('');
+  const [err, setErr] = useState("");
   const handleSignUpForm = (e) => {
     e.preventDefault();
-    setErr('');
+    setErr("");
     const form = e.target;
     const formData = new FormData(form);
     const { email, initialPassword, confirmPassword, name, photoURL } =
       Object.fromEntries(formData.entries());
-    console.log(email, initialPassword, confirmPassword, name, photoURL)
-    if(initialPassword !== confirmPassword) {
-        console.log("yes0");
-        setErr("Confirm Password can't Be different from the Initial Password.")
-        return;
+    console.log(email, initialPassword, confirmPassword, name, photoURL);
+    if (initialPassword !== confirmPassword) {
+      console.log("yes");
+      setErr("Confirm Password can't Be different from the Initial Password.");
+      return;
     }
-    if(initialPassword === email) {
-        console.log("yes");
-        setErr("Password and Mail can't be same.")
-        return;
+    if (initialPassword === email) {
+      console.log("yes");
+      setErr("Password and Mail can't be same.");
+      return;
     }
 
-    signUpwithEmail(email, initialPassword).then(result=>{
-      console.log(result.user);
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photoURL
-      }).then(()=>{
-        console.log("Profile Updated");
-        setUser({...result.user, displayName:name, photoURL:photoURL});
-      }).catch(err=> {
-        console.log(err);
+    signUpwithEmail(email, initialPassword)
+      .then((result) => {
+        console.log(result.user);
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoURL,
+        })
+          .then(() => {
+            console.log("Profile Updated");
+            setUser({ ...result.user, displayName: name, photoURL: photoURL });
+            navigate(from)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
-    }).catch(err=>{
-      console.log(err);
-    })
-
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const handleGoogleSignUp = () => {
-    googleSignUp().then(result => {
-        console.log(result)
-    }).catch(err => console.log(err))
-  }
+    googleSignUp()
+      .then((result) => {
+        console.log(result);
+        navigate(from)
+      })
+      .catch((err) => console.log(err));
+  };
 
   const handleGitHubSignUp = () => {
-      gitHubSignUp().then(result => {
+    gitHubSignUp()
+      .then((result) => {
         console.log(result);
-      }).catch(err=>{
-        console.log(err);
+        navigate(from)
       })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10">
@@ -96,7 +109,11 @@ const SignUp = () => {
                     Sign Up Now
                   </h1>
                   <div className="flex justify-between items-center mr-4.5 mt-3">
-                    <button onClick={handleGitHubSignUp} type="button" className="btn bg-black text-xs text-white border-black">
+                    <button
+                      onClick={handleGitHubSignUp}
+                      type="button"
+                      className="btn bg-black text-xs text-white border-black"
+                    >
                       <svg
                         aria-label="GitHub logo"
                         width="16"
@@ -112,7 +129,11 @@ const SignUp = () => {
                       GitHub Signup
                     </button>
                     <div className="divider divider-horizontal">OR</div>
-                    <button type="button" onClick={handleGoogleSignUp} className="btn bg-white text-xs text-black border-[#e5e5e5]">
+                    <button
+                      type="button"
+                      onClick={handleGoogleSignUp}
+                      className="btn bg-white text-xs text-black border-[#e5e5e5]"
+                    >
                       <svg
                         aria-label="Google logo"
                         width="16"
@@ -193,8 +214,8 @@ const SignUp = () => {
                 <div className="relative max-w-xs">
                   <label className="input validator">
                     <input
-                    className="pl-6.5"
-                      type={password? "password": "text"}
+                      className="pl-6.5"
+                      type={password ? "password" : "text"}
                       required
                       placeholder="Password"
                       name="initialPassword"

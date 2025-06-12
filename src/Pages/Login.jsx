@@ -5,13 +5,17 @@ import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
 import { GrKey } from "react-icons/gr";
 import { easeIn, motion } from "motion/react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
   useEffect(() => {
     document.title = "AcademiaPro | Login";
   }, []);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location);
+  const from = location.state || '/';
   const { googleSignUp, gitHubSignUp, loginWithEmail } =
     useContext(AuthContext);
   const [password, setPassword] = useState(true);
@@ -25,6 +29,7 @@ const Login = () => {
     loginWithEmail(email, password)
       .then((result) => {
         console.log(result);
+        navigate(from);
       })
       .catch((err) => {
         console.log(err);
@@ -35,6 +40,7 @@ const Login = () => {
     googleSignUp()
       .then((result) => {
         console.log(result);
+        navigate(from);
       })
       .catch((err) => console.log(err));
   };
@@ -43,6 +49,7 @@ const Login = () => {
     gitHubSignUp()
       .then((result) => {
         console.log(result);
+        navigate(from);
       })
       .catch((err) => {
         console.log(err);
@@ -179,7 +186,7 @@ const Login = () => {
               </form>
               <p>
                 Don't Have Any Account?{" "}
-                <Link className="link text-secondary" to="/signUp">
+                <Link className="link text-secondary"  state={from} to="/signUp">
                   Sign Up Now
                 </Link>
               </p>
