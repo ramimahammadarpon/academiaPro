@@ -7,6 +7,7 @@ import { GrKey } from "react-icons/gr";
 import { easeIn, motion } from "motion/react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
   useEffect(() => {
@@ -15,9 +16,10 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log(location);
-  const from = location.state || '/';
+  const from = location.state || "/";
   const { googleSignUp, gitHubSignUp, loginWithEmail } =
     useContext(AuthContext);
+  const [error, setError] = useState("");
   const [password, setPassword] = useState(true);
   const handleLoginForm = (e) => {
     e.preventDefault();
@@ -25,20 +27,34 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    setError("");
 
     loginWithEmail(email, password)
       .then((result) => {
+        Swal.fire({
+          title: "Successfully Logged In!",
+          icon: "success",
+          draggable: true,
+        });
         console.log(result);
         navigate(from);
       })
       .catch((err) => {
         console.log(err);
+        if (err.message === "Firebase: Error (auth/invalid-credential).") {
+          setError("Incorrect Email or Password");
+        }
       });
   };
 
   const handleGoogleSignUp = () => {
     googleSignUp()
       .then((result) => {
+        Swal.fire({
+          title: "Successfully Logged In!",
+          icon: "success",
+          draggable: true,
+        });
         console.log(result);
         navigate(from);
       })
@@ -48,6 +64,11 @@ const Login = () => {
   const handleGitHubSignUp = () => {
     gitHubSignUp()
       .then((result) => {
+        Swal.fire({
+          title: "Successfully Logged In!",
+          icon: "success",
+          draggable: true,
+        });
         console.log(result);
         navigate(from);
       })
@@ -101,6 +122,7 @@ const Login = () => {
                     </button>
                     <div className="divider divider-horizontal">OR</div>
                     <button
+                      type="button"
                       onClick={handleGoogleSignUp}
                       className="btn bg-white text-xs text-black border-[#e5e5e5]"
                     >
@@ -184,9 +206,10 @@ const Login = () => {
                   Login
                 </button>
               </form>
+              {error && <p className="text-red-500">{error}</p>}
               <p>
                 Don't Have Any Account?{" "}
-                <Link className="link text-secondary"  state={from} to="/signUp">
+                <Link className="link text-secondary" state={from} to="/signUp">
                   Sign Up Now
                 </Link>
               </p>

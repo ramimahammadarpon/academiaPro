@@ -4,10 +4,13 @@ import ornament1 from "../assets/Lottie/ornament.json";
 import { AuthContext } from "../Context/AuthContext";
 import { easeIn, motion } from "motion/react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = "AcademiaPro | Add Course";
     setDate(new Date());
@@ -21,8 +24,34 @@ const AddCourse = () => {
     formVal.usedSeats = 0;
     console.log("This is Handle add course", formVal);
 
-    axios.post('http://localhost:3000/courses', formVal).then(res=> console.log(res.data)).catch(err=> console.log(err));
-
+    axios
+      .post("http://localhost:3000/courses", formVal)
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Succesfully Added The Course", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate("/manageCourses");
+      })
+      .catch((err) => {
+        toast.error(`${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
   };
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32">

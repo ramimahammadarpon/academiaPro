@@ -10,6 +10,7 @@ import { MdAddPhotoAlternate, MdAlternateEmail } from "react-icons/md";
 import { AuthContext } from "../Context/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebse.init";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   useEffect(() => {
@@ -20,7 +21,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   console.log(location);
   console.log(location?.state);
-  const from = location.state || '/';
+  const from = location.state || "/";
   const { googleSignUp, gitHubSignUp, signUpwithEmail, setUser, user } =
     useContext(AuthContext);
   const [password, setPassword] = useState(true);
@@ -55,7 +56,12 @@ const SignUp = () => {
           .then(() => {
             console.log("Profile Updated");
             setUser({ ...result.user, displayName: name, photoURL: photoURL });
-            navigate(from)
+            Swal.fire({
+              title: "Successfully Signned Up!",
+              icon: "success",
+              draggable: true,
+            });
+            navigate(from);
           })
           .catch((err) => {
             console.log(err);
@@ -69,7 +75,12 @@ const SignUp = () => {
     googleSignUp()
       .then((result) => {
         console.log(result);
-        navigate(from)
+        Swal.fire({
+          title: "Successfully Signned Up!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate(from);
       })
       .catch((err) => console.log(err));
   };
@@ -78,7 +89,12 @@ const SignUp = () => {
     gitHubSignUp()
       .then((result) => {
         console.log(result);
-        navigate(from)
+        Swal.fire({
+          title: "Successfully Signned Up!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate(from);
       })
       .catch((err) => {
         console.log(err);

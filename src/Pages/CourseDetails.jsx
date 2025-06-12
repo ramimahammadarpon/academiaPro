@@ -9,6 +9,7 @@ import { easeIn, motion } from "motion/react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Loading from "../Components/Loading";
+import { toast } from "react-toastify";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
@@ -91,6 +92,16 @@ const CourseDetails = () => {
               setEnrollmentCount(enrollmentCount + 1);
               setSeat(seat + 1);
             }
+            toast.success(`Successfully Enrolled to ${course?.courseTitle}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           });
       });
   };
@@ -108,7 +119,7 @@ const CourseDetails = () => {
           );
           setEnrolled(deletedData);
           axios
-            .patch(`http://localhost:3000/course/${id}`, {
+            .patch(`http://localhost:3000/courses/${id}`, {
               enrollment: enrollmentCount - 1,
               usedSeats: seat - 1,
             })
@@ -125,102 +136,108 @@ const CourseDetails = () => {
       });
   };
 
-  return <div>
-    {loading? <Loading></Loading>: <div className="min-h-screen relative bg-gradient-to-b from-secondary/40 to-primary/60 pt-32">
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 100 }}
-        transition={{ duration: 0.5, ease: easeIn }}
-        className="card lg:card-side bg-base-100/30 backdrop-blur-md shadow-sm max-w-7xl mx-3 lg:mx-auto items-center p-3 lg:p-0 h-[70vh] lg:h-auto"
-      >
-        <figure className="w-1/2">
-          <img src={course?.photoURL} alt="Album" />
-        </figure>
-        <div className="card-body relative">
-          <h2 className="card-title text-primary text-2xl">
-            {course?.courseTitle}
-          </h2>
-          <div className="space-y-4">
-            <p className="flex gap-8 items-center">
-              <span className="flex gap-3 w-40 items-center">
-                <MdDateRange />
-                Released Date
-              </span>
-              {course?.releasedDate}
-            </p>
-            <p className="flex gap-8 items-center">
-              <span className="flex gap-3 w-40 items-center">
-                <FaHourglassEnd />
-                Duration
-              </span>
-              {course?.duration}
-            </p>
-            <p className="flex gap-8 items-center">
-              <span className="flex gap-3 w-40 items-center">
-                <CgProfile />
-                Creator's Name
-              </span>
-              {course?.name}
-            </p>
-            <p className="flex gap-8 items-center">
-              <span className="flex gap-3 w-40 items-center">
-                <MdAlternateEmail />
-                Creator's Email
-              </span>
-              {course?.email}
-            </p>
-            <p className="flex gap-8 items-center">
-              <span className="flex gap-3 w-40 items-center">
-                <CgDetailsMore size={20} />
-                Course Description
-              </span>
-              {course?.description}
-            </p>
-          </div>
-          <div className="card-actions absolute bottom-10 right-10">
-            {alreadyEnrolled ? (
-              <button
-                onClick={handleCancelEnrollment}
-                className="lg:inline-block px-4 py-2 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 cursor-pointer"
-              >
-                Cancel Enrollment
-              </button>
-            ) : (
-              <button
-                onClick={handleEnrollment}
-                disabled={enrolled.length >= 3 || seat >= 10}
-                className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${
-                  enrolled.length >= 3 || seat >= 10
-                    ? "cursor-not-allowed bg-stone-400"
-                    : "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"
-                }`}
-              >
-                {enrolled.length >= 3
-                  ? "Reached Enrollment Limit"
-                  : `${
-                      seat >= 10
-                        ? `No Seats Left`
-                        : `Enroll (Seats Remaining - ${10 - seat})`
+  return (
+    <div>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <div className="min-h-screen relative bg-gradient-to-b from-secondary/40 to-primary/60 pt-32">
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 100 }}
+            transition={{ duration: 0.5, ease: easeIn }}
+            className="card lg:card-side bg-base-100/30 backdrop-blur-md shadow-sm max-w-7xl mx-3 lg:mx-auto items-center p-3 lg:p-0 h-[70vh] lg:h-auto"
+          >
+            <figure className="w-1/2">
+              <img src={course?.photoURL} alt="Album" />
+            </figure>
+            <div className="card-body relative">
+              <h2 className="card-title text-primary text-2xl">
+                {course?.courseTitle}
+              </h2>
+              <div className="space-y-4">
+                <p className="flex gap-8 items-center">
+                  <span className="flex gap-3 w-40 items-center">
+                    <MdDateRange />
+                    Released Date
+                  </span>
+                  {course?.releasedDate}
+                </p>
+                <p className="flex gap-8 items-center">
+                  <span className="flex gap-3 w-40 items-center">
+                    <FaHourglassEnd />
+                    Duration
+                  </span>
+                  {course?.duration}
+                </p>
+                <p className="flex gap-8 items-center">
+                  <span className="flex gap-3 w-40 items-center">
+                    <CgProfile />
+                    Creator's Name
+                  </span>
+                  {course?.name}
+                </p>
+                <p className="flex gap-8 items-center">
+                  <span className="flex gap-3 w-40 items-center">
+                    <MdAlternateEmail />
+                    Creator's Email
+                  </span>
+                  {course?.email}
+                </p>
+                <p className="flex gap-8 items-center">
+                  <span className="flex gap-3 w-40 items-center">
+                    <CgDetailsMore size={20} />
+                    Course Description
+                  </span>
+                  {course?.description}
+                </p>
+              </div>
+              <div className="card-actions absolute bottom-10 right-10">
+                {alreadyEnrolled ? (
+                  <button
+                    onClick={handleCancelEnrollment}
+                    className="lg:inline-block px-4 py-2 text-lg text-secondary hover:bg-gradient-to-r from-primary to-secondary hover:text-white border-2 border-secondary hover:border-none rounded-sm transform hover:scale-110 transition-all duration-150 cursor-pointer"
+                  >
+                    Cancel Enrollment
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleEnrollment}
+                    disabled={enrolled.length >= 3 || seat >= 10}
+                    className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${
+                      enrolled.length >= 3 || seat >= 10
+                        ? "cursor-not-allowed bg-stone-400"
+                        : "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"
                     }`}
-              </button>
-            )}
-          </div>
+                  >
+                    {enrolled.length >= 3
+                      ? "Reached Enrollment Limit"
+                      : `${
+                          seat >= 10
+                            ? `No Seats Left`
+                            : `Enroll (Seats Remaining - ${10 - seat})`
+                        }`}
+                  </button>
+                )}
+              </div>
+            </div>
+          </motion.div>
+          <Lottie
+            className="absolute bottom-5 right-5"
+            style={{ width: "200px" }}
+            animationData={ornament1}
+            loop={true}
+          ></Lottie>
+          <Lottie
+            className="absolute top-5 left-5"
+            style={{ width: "200px" }}
+            animationData={ornament1}
+            loop={true}
+          ></Lottie>
         </div>
-      </motion.div>
-      <Lottie
-        className="absolute bottom-5 right-5"
-        style={{ width: "200px" }}
-        animationData={ornament1}
-        loop={true}
-      ></Lottie>
-      <Lottie
-        className="absolute top-5 left-5"
-        style={{ width: "200px" }}
-        animationData={ornament1}
-        loop={true}
-      ></Lottie>
-    </div>}
-  </div>
+      )}
+    </div>
+  );
 };
 
 export default CourseDetails;

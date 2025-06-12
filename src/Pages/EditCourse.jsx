@@ -5,25 +5,55 @@ import { AuthContext } from "../Context/AuthContext";
 import { easeIn, motion } from "motion/react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { toast } from "react-toastify";
 
 const EditCourse = () => {
-    const {id} = useParams();
-    const [course, setCourse] = useState([])
-    console.log(course);
-    console.log(id);
-    useEffect(()=> {
-       document.title = "AcademiaPro | Edit Course";
-        fetch(`http://localhost:3000/courses/${id}`).then(res=>res.json()).then(data=> setCourse(data))
-    }, [id])
-    const handleEditCourse = e => {
-        e.preventDefault();
-        const form = e.target;
-        const updatedFormData = new FormData(form);
-        const updatedFormVal = Object.fromEntries(updatedFormData.entries());
+  const { id } = useParams();
+  const [course, setCourse] = useState([]);
+  console.log(course);
+  console.log(id);
+  useEffect(() => {
+    document.title = "AcademiaPro | Edit Course";
+    fetch(`http://localhost:3000/courses/${id}`)
+      .then((res) => res.json())
+      .then((data) => setCourse(data));
+  }, [id]);
+  const handleEditCourse = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const updatedFormData = new FormData(form);
+    const updatedFormVal = Object.fromEntries(updatedFormData.entries());
 
-        console.log("This is Edit Course", updatedFormVal);
-        axios.patch(`http://localhost:3000/courses/${id}`, updatedFormVal).then(res=> console.log(res.data))
-    }
+    console.log("This is Edit Course", updatedFormVal);
+    axios
+      .patch(`http://localhost:3000/courses/${id}`, updatedFormVal)
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Updated Course Info Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(`${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
+  };
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32">
       <motion.div
