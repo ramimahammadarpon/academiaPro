@@ -12,6 +12,7 @@ const EditCourse = () => {
     console.log(course);
     console.log(id);
     useEffect(()=> {
+       document.title = "AcademiaPro | Edit Course";
         fetch(`http://localhost:3000/courses/${id}`).then(res=>res.json()).then(data=> setCourse(data))
     }, [id])
     const handleEditCourse = e => {

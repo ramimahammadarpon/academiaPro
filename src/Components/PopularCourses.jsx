@@ -4,7 +4,9 @@ import Card from './card';
 const PopularCourses = () => {
     const [courses, setCourses] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:3000/popularCourses').then(res=> res.json()).then(data=> setCourses(data));
+        fetch('http://localhost:3000/popularCourses').then(res=> res.json()).then(data=> {
+            setCourses(data);
+        });
     }, [])
     return (
         <div className='mt-20'>

@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ornament1 from "../assets/Lottie/ornament.json";
 import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
@@ -14,6 +14,11 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../firebse.init";
 
 const SignUp = () => {
+
+  useEffect(()=>{
+         document.title = "AcademiaPro | Sign Up";
+    }, [])
+
     const {googleSignUp, gitHubSignUp, signUpwithEmail, setUser, user} = useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const [confirmPass, setConfirmPass] = useState(true);

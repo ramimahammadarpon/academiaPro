@@ -9,6 +9,7 @@ const AddCourse = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState("");
   useEffect(() => {
+    document.title = "AcademiaPro | Add Course";
     setDate(new Date());
   }, []);
   const handleAddCourse = (e) => {

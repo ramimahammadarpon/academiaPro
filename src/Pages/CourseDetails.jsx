@@ -8,6 +8,7 @@ import { data, useParams } from "react-router";
 import { easeIn, motion } from "motion/react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import Loading from "../Components/Loading";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
@@ -16,9 +17,10 @@ const CourseDetails = () => {
   const [course, setCourse] = useState();
   const [enrolled, setEnrolled] = useState([]);
   const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
-    const [seat, setSeat] = useState();
-    const [enrollmentCount, setEnrollmentCount] = useState();
-    const [dataByEmail, setDataByEmail] = useState();
+  const [seat, setSeat] = useState();
+  const [enrollmentCount, setEnrollmentCount] = useState();
+  const [dataByEmail, setDataByEmail] = useState();
+  const [loading, setLoading] = useState(true);
 
   console.log(course);
   console.log(enrolled);
@@ -28,12 +30,13 @@ const CourseDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
-        setEnrollmentCount(data.enrollment)
+        setEnrollmentCount(data.enrollment);
         setSeat(data.usedSeats);
       });
   }, [id]);
 
   useEffect(() => {
+    document.title = "AcademiaPro | Course Details";
     fetch(`http://localhost:3000/enrollment?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
@@ -45,6 +48,7 @@ const CourseDetails = () => {
         } else {
           setAlreadyEnrolled(false);
         }
+        setLoading(false);
       });
   }, [user, id]);
 
@@ -63,8 +67,9 @@ const CourseDetails = () => {
       .post("http://localhost:3000/enrollment", enrollment)
       .then((result) => {
         console.log(result.data);
-        return fetch(`http://localhost:3000/enrollment?email=${user?.email}`)
-      }).then((res) => res.json())
+        return fetch(`http://localhost:3000/enrollment?email=${user?.email}`);
+      })
+      .then((res) => res.json())
       .then((data) => {
         setEnrolled(data);
         const existed = data.find((enroll) => enroll?.course_id === id);
@@ -75,47 +80,53 @@ const CourseDetails = () => {
         } else {
           setAlreadyEnrolled(false);
         }
-        axios.patch(`http://localhost:3000/courses/${id}`, {
-          enrollment: enrollmentCount + 1,
-          usedSeats: seat + 1
-        }).then(res=> {
-          console.log(res.data)
-          if(res.data.modifiedCount === 1){
-            setEnrollmentCount(enrollmentCount+1)
-            setSeat(seat+1);
-          }
-        });
+        axios
+          .patch(`http://localhost:3000/courses/${id}`, {
+            enrollment: enrollmentCount + 1,
+            usedSeats: seat + 1,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.modifiedCount === 1) {
+              setEnrollmentCount(enrollmentCount + 1);
+              setSeat(seat + 1);
+            }
+          });
       });
   };
 
   const handleCancelEnrollment = () => {
     console.log("congo");
 
-    axios.delete(`http://localhost:3000/enrollment/${dataByEmail._id}`).then(res=> {
-      if(res.data.deletedCount) {
-        setAlreadyEnrolled(false);
-        const deletedData = enrolled.filter(enroll=> enroll.course_id !== id);
-        setEnrolled(deletedData);
-        axios.patch(`http://localhost:3000/course/${id}`, {
-          enrollment: enrollmentCount - 1,
-          usedSeats: seat - 1
-        }).then(res=> {
-          console.log(res.data)
-          if(res.data.modifiedCount === 1){
-            setEnrollmentCount(enrollmentCount - 1)
-            setSeat(seat - 1);
-          }
-        });
-
-      }
-      else{
-        setAlreadyEnrolled(true);
-      }
-    })
+    axios
+      .delete(`http://localhost:3000/enrollment/${dataByEmail._id}`)
+      .then((res) => {
+        if (res.data.deletedCount) {
+          setAlreadyEnrolled(false);
+          const deletedData = enrolled.filter(
+            (enroll) => enroll.course_id !== id
+          );
+          setEnrolled(deletedData);
+          axios
+            .patch(`http://localhost:3000/course/${id}`, {
+              enrollment: enrollmentCount - 1,
+              usedSeats: seat - 1,
+            })
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.modifiedCount === 1) {
+                setEnrollmentCount(enrollmentCount - 1);
+                setSeat(seat - 1);
+              }
+            });
+        } else {
+          setAlreadyEnrolled(true);
+        }
+      });
   };
 
-  return (
-    <div className="min-h-screen relative bg-gradient-to-b from-secondary/40 to-primary/60 pt-32">
+  return <div>
+    {loading? <Loading></Loading>: <div className="min-h-screen relative bg-gradient-to-b from-secondary/40 to-primary/60 pt-32">
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 100 }}
@@ -177,10 +188,20 @@ const CourseDetails = () => {
             ) : (
               <button
                 onClick={handleEnrollment}
-                disabled={enrolled.length>=3 || seat>=10}
-                className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${enrolled.length>=3 || seat>=10 ? "cursor-not-allowed bg-stone-400": "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"}`}
+                disabled={enrolled.length >= 3 || seat >= 10}
+                className={`lg:inline-block px-4 py-2 text-lg text-secondary  border-2 border-secondary rounded-sm  ${
+                  enrolled.length >= 3 || seat >= 10
+                    ? "cursor-not-allowed bg-stone-400"
+                    : "cursor-pointer hover:bg-gradient-to-r from-primary to-secondary hover:text-white transform hover:scale-110 transition-all duration-150 hover:border-none"
+                }`}
               >
-                {enrolled.length>=3? "Reached Enrollment Limit": `${seat>=10?`No Seats Left`: `Enroll (Seats Remaining - ${10-seat})`}`}
+                {enrolled.length >= 3
+                  ? "Reached Enrollment Limit"
+                  : `${
+                      seat >= 10
+                        ? `No Seats Left`
+                        : `Enroll (Seats Remaining - ${10 - seat})`
+                    }`}
               </button>
             )}
           </div>
@@ -198,8 +219,8 @@ const CourseDetails = () => {
         animationData={ornament1}
         loop={true}
       ></Lottie>
-    </div>
-  );
+    </div>}
+  </div>
 };
 
 export default CourseDetails;

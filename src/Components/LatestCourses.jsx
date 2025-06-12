@@ -1,13 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import Card from './card';
 
-const LatestCourses = () => {
-    const [courses, setCourses] = useState([])
-    useEffect(()=> {
-        fetch('http://localhost:3000/latestCourses').then(res=>res.json()).then(data=>{
-            setCourses(data);
-        })
-    })
+const LatestCourses = ({courses}) => {
     return (
         <div className='mt-20'>
             <h1 className='text-2xl font-semibold text-primary mb-7'>Latest Courses</h1>

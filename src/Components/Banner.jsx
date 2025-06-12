@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import SliderCard from "./SliderCard";
 
-const Banner = () => {
+const Banner = ({cards}) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -29,13 +28,6 @@ const Banner = () => {
       }
     ]
   };
-
-  const [cards, setCards] = useState([]);
-
-  useEffect(()=>{
-    fetch('http://localhost:3000/latestCourses').then(res=> res.json()).then(data=>setCards(data));
-  }, [setCards])
-
   console.log(cards)
 
   return (

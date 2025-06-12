@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ornament1 from "../assets/Lottie/ornament.json";
 import loginAnimation from "../assets/Lottie/login.json";
 import { FaRegEye, FaRegEyeSlash, FaRegUser } from "react-icons/fa";
@@ -9,7 +9,11 @@ import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
-    const {googleSignUp, gitHubSignUp, loginWithEmail} = useContext(AuthContext);
+  useEffect(() => {
+    document.title = "AcademiaPro | Login";
+  }, []);
+  const { googleSignUp, gitHubSignUp, loginWithEmail } =
+    useContext(AuthContext);
   const [password, setPassword] = useState(true);
   const handleLoginForm = (e) => {
     e.preventDefault();
@@ -18,11 +22,13 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    loginWithEmail(email, password).then(result=>{
-      console.log(result);
-    }).catch(err=>{
-      console.log(err);
-    })
+    loginWithEmail(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleGoogleSignUp = () => {
@@ -34,11 +40,14 @@ const Login = () => {
   };
 
   const handleGitHubSignUp = () => {
-      gitHubSignUp().then(result => {
+    gitHubSignUp()
+      .then((result) => {
         console.log(result);
-      }).catch(err=>{
+      })
+      .catch((err) => {
         console.log(err);
-      })}
+      });
+  };
 
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60">
@@ -64,7 +73,11 @@ const Login = () => {
                     Login Now!
                   </h1>
                   <div className="flex justify-between items-center mr-4.5 mt-3">
-                    <button onClick={handleGitHubSignUp} type="button" className="btn bg-black text-xs text-white border-black">
+                    <button
+                      onClick={handleGitHubSignUp}
+                      type="button"
+                      className="btn bg-black text-xs text-white border-black"
+                    >
                       <svg
                         aria-label="GitHub logo"
                         width="16"
@@ -80,7 +93,10 @@ const Login = () => {
                       GitHub Login
                     </button>
                     <div className="divider divider-horizontal">OR</div>
-                    <button onClick={handleGoogleSignUp} className="btn bg-white text-xs text-black border-[#e5e5e5]">
+                    <button
+                      onClick={handleGoogleSignUp}
+                      className="btn bg-white text-xs text-black border-[#e5e5e5]"
+                    >
                       <svg
                         aria-label="Google logo"
                         width="16"

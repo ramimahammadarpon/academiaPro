@@ -5,15 +5,22 @@ import ornament1 from "../assets/Lottie/ornament.json";
 import { easeIn, motion } from "motion/react";
 import TableRow from "../Components/TableRow";
 import EnrollmentTable from '../Components/EnrollmentTable';
+import Loading from '../Components/Loading';
 
 const MyEnrolledCourses = () => {
     const {user} = useContext(AuthContext);
     const [enrollment, setEnrollment] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(()=> {
-        fetch(`http://localhost:3000/enrollment?email=${user?.email}`).then(res=>res.json()).then(data=> setEnrollment(data));
+       document.title= "AcademiaPro | My Enrolled Courses";
+        fetch(`http://localhost:3000/enrollment?email=${user?.email}`).then(res=>res.json()).then(data=> {
+          setEnrollment(data);
+          setLoading(false);
+        });
     }, [user])
     return (
-        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32 py-20">
+       <div>
+        {loading? <Loading></Loading> :  <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32 py-20">
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 100 }}
@@ -55,7 +62,8 @@ const MyEnrolledCourses = () => {
         animationData={ornament1}
         loop={true}
       ></Lottie>
-    </div>
+    </div>}
+       </div>
     );
 };
 

@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'AddCourse',
-                Component: AddCourse
+                element: <PrivateRoute><AddCourse></AddCourse></PrivateRoute>
             },
             {
                 path: 'courseDetails/:id',
