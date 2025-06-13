@@ -4,6 +4,7 @@ import LatestCourses from "../Components/LatestCourses";
 import PopularCourses from "../Components/PopularCourses";
 import Loading from "../Components/Loading";
 import Statistics from "../Components/Statistics";
+import FAQs from "../Components/FAQs";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -37,6 +38,9 @@ const Home = () => {
             </section>
             <section>
               <Statistics></Statistics>
+            </section>
+            <section>
+              <FAQs></FAQs>
             </section>
           </main>
         </div>

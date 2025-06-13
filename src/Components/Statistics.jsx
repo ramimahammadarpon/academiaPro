@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import React, { useEffect, useState } from "react";
-import { data } from "react-router";
 import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
 const getPath = (x, y, width, height) =>
   `M${x},${y + height}
