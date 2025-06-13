@@ -224,13 +224,13 @@ const CourseDetails = () => {
             </div>
           </motion.div>
           <Lottie
-            className="absolute bottom-5 right-5"
+            className="absolute bottom-5 right-5 -z-[1]"
             style={{ width: "200px" }}
             animationData={ornament1}
             loop={true}
           ></Lottie>
           <Lottie
-            className="absolute top-5 left-5"
+            className="absolute top-5 left-5 -z-[1]"
             style={{ width: "200px" }}
             animationData={ornament1}
             loop={true}

@@ -149,10 +149,10 @@ const Navbar = () => {
               ) : (
                 <>
                   <li>
-                    <NavLink to="/login">Login</NavLink>
+                    <NavLink className="py-1 px-2 rounded-sm" to="/login">Login</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/signUp">Sign Up</NavLink>
+                    <NavLink className="py-1 px-2 rounded-sm" to="/signUp">Sign Up</NavLink>
                   </li>
                 </>
               )}

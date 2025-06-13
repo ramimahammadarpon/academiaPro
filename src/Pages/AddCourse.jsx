@@ -54,12 +54,12 @@ const AddCourse = () => {
       });
   };
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen pt-32 pb-20">
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 100 }}
         transition={{ duration: 0.5, ease: easeIn }}
-        className="shadow-2xl rounded-lg p-4 max-w-6xl mx-5 lg:mx-auto bg-base-100/20 backdrop-blur-md"
+        className="shadow-2xl rounded-lg p-4 max-w-6xl mx-3 lg:mx-auto bg-base-100/20 backdrop-blur-md"
       >
         <h1 className="text-2xl text-center text-primary font-bold">
           Add Your Course
@@ -156,13 +156,13 @@ const AddCourse = () => {
         </form>
       </motion.div>
       <Lottie
-        className="absolute top-5 left-5"
+        className="absolute top-5 left-5 -z-[1]"
         style={{ width: "200px" }}
         animationData={ornament1}
         loop={true}
       ></Lottie>
       <Lottie
-        className="absolute bottom-5 right-5"
+        className="absolute bottom-2 right-2 md:bottom-5 md:right-5 -z-[1]"
         style={{ width: "200px" }}
         animationData={ornament1}
         loop={true}

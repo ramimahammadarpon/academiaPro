@@ -3,6 +3,7 @@ import Banner from "../Components/Banner";
 import LatestCourses from "../Components/LatestCourses";
 import PopularCourses from "../Components/PopularCourses";
 import Loading from "../Components/Loading";
+import Statistics from "../Components/Statistics";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ const Home = () => {
       {loading ? (
         <Loading></Loading>
       ) : (
-        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20">
+        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-30">
           <header>
             <Banner cards={cards}></Banner>
           </header>
@@ -33,6 +34,9 @@ const Home = () => {
             </section>
             <section>
               <PopularCourses></PopularCourses>
+            </section>
+            <section>
+              <Statistics></Statistics>
             </section>
           </main>
         </div>

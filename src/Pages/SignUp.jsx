@@ -102,7 +102,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10 pt-30 px-3">
       <div className="hero min-h-screen">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
@@ -303,13 +303,13 @@ const SignUp = () => {
           </div>
         </motion.div>
         <Lottie
-          className="absolute bottom-5 right-5"
+          className="absolute bottom-2 right-2 md:bottom-5 md:right-5 -z-[1]"
           style={{ width: "200px" }}
           animationData={ornament1}
           loop={true}
         ></Lottie>
         <Lottie
-          className="absolute top-5 left-5"
+          className="absolute top-2 left-2 md:top-5 md:left-5 -z-[1]"
           style={{ width: "200px" }}
           animationData={ornament1}
           loop={true}
