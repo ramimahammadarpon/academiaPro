@@ -34,6 +34,14 @@ const Navbar = () => {
           Courses
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+          to="/aboutUs"
+        >
+          About Us
+        </NavLink>
+      </li>
       {user && (
         <>
           <li>

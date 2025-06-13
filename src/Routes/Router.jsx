@@ -12,6 +12,7 @@ import { path } from "motion/react-client";
 import EditCourse from "../Pages/EditCourse";
 import MyEnrolledCourses from "../Pages/MyEnrolledCourses";
 import Error from "../Pages/Error";
+import AboutUs from "../Pages/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
             {
                 path: 'myEnrolledCourses',
                 element: <PrivateRoute><MyEnrolledCourses></MyEnrolledCourses></PrivateRoute>
+            },
+            {
+                path: 'aboutUs',
+                element: <AboutUs></AboutUs>
             }
         ]
     }, 
