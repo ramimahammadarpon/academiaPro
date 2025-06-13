@@ -26,7 +26,7 @@ const Card = ({ course, index }) => {
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="absolute bg-primary/40 w-full h-full flex justify-center items-center"
+            className="absolute bg-[#160124]/50 w-full h-full flex justify-center items-center"
           >
             <Link
               to={`/courseDetails/${course._id}`}

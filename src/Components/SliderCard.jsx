@@ -27,7 +27,7 @@ const SliderCard = ({ card }) => {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           style={{ backgroundImage: `url(${photoURL}` }}
-          className={`lg:h-[75vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-no-repeat bg-cover bg-center relative overflow-hidden`}
+          className={`lg:h-[80vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-no-repeat bg-cover bg-center relative overflow-hidden`}
         >
           <div className="w-full h-full bg-primary/20 backdrop-blur-xs flex lg:hidden flex-col justify-center items-center">
             <div className="w-2/3">
@@ -56,7 +56,7 @@ const SliderCard = ({ card }) => {
               hover ? { y: "0%", opacity: 1 } : { y: "-100%", opacity: 0 }
             }
             transition={{ duration: 0.3, ease: easeOut }}
-            className={`w-full h-full bg-primary/40 backdrop-blur-xs border-2 border-primary`}
+            className={`w-full h-full bg-[#160124]/40 backdrop-blur-xs border-2 border-primary`}
           ></motion.div>
 
           <motion.div
@@ -65,7 +65,7 @@ const SliderCard = ({ card }) => {
               hover ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }
             }
             transition={{ duration: 0.3, ease: easeIn }}
-            className="bg-primary/30 absolute bottom-0 p-10 text-white w-full"
+            className="bg-[#160124]/40 absolute bottom-0 p-10 text-white w-full"
           >
             <h3 className="text-2xl font-bold text-secondary mb-3">
               {courseTitle}

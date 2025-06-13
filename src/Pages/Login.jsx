@@ -78,7 +78,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 px-3 pt-20">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 px-3 lg:pt-0 pt-20">
       <div className="hero min-h-screen">
         <motion.div
           initial={{ y: -50, opacity: 0 }}

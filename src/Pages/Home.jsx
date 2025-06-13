@@ -25,7 +25,7 @@ const Home = () => {
       {loading ? (
         <Loading></Loading>
       ) : (
-        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-30">
+        <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-26">
           <header>
             <Banner cards={cards}></Banner>
           </header>

@@ -102,7 +102,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10 pt-30 px-3">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 pb-10  lg:pt-0 pt-30 px-3">
       <div className="hero min-h-screen">
         <motion.div
           initial={{ y: -50, opacity: 0 }}

@@ -80,7 +80,7 @@ const Navbar = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="fixed z-10 lg:top-5 navbar bg-gradient-to-l from-white/40 to-white/20 shadow-sm max-w-7xl lg:rounded-lg px-4 backdrop-blur-sm lg:border border-white/30"
+        className="fixed z-10 lg:top-5 navbar bg-gradient-to-l from-white/40 to-white/20 shadow-sm max-w-7xl lg:rounded-lg px-4 backdrop-blur-sm lg:border border-white/40"
       >
         <div className="navbar-start">
           <div className="dropdown">
