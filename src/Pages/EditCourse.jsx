@@ -4,11 +4,12 @@ import ornament1 from "../assets/Lottie/ornament.json";
 import { AuthContext } from "../Context/AuthContext";
 import { easeIn, motion } from "motion/react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 
 const EditCourse = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [course, setCourse] = useState([]);
   console.log(course);
   console.log(id);
@@ -39,6 +40,7 @@ const EditCourse = () => {
           progress: undefined,
           theme: "light",
         });
+        navigate('/manageCourses');
       })
       .catch((err) => {
         console.log(err);

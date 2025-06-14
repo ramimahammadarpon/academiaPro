@@ -8,6 +8,7 @@ import { easeIn, motion } from "motion/react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Login = () => {
   useEffect(() => {
@@ -43,6 +44,17 @@ const Login = () => {
         console.log(err);
         if (err.message === "Firebase: Error (auth/invalid-credential).") {
           setError("Incorrect Email or Password");
+        } else {
+          toast.error(`${err.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
@@ -58,7 +70,19 @@ const Login = () => {
         console.log(result);
         navigate(from);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      });
   };
 
   const handleGitHubSignUp = () => {
@@ -74,6 +98,16 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   };
 
