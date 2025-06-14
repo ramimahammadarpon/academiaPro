@@ -150,14 +150,14 @@ const CourseDetails = () => {
             transition={{ duration: 0.5, ease: easeIn }}
             className="card lg:card-side bg-base-100/30 backdrop-blur-md shadow-sm max-w-7xl mx-3 lg:mx-auto items-center p-3 lg:p-0 h-[70vh] lg:h-auto"
           >
-            <figure className="w-1/2">
+            <figure className="w-1/2 h-[60vh] object-cover object-center">
               <img src={course?.photoURL} alt="Album" />
             </figure>
             <div className="card-body relative">
               <h2 className="card-title text-primary text-2xl">
                 {course?.courseTitle}
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-4 pb-32">
                 <p className="flex gap-8 items-center">
                   <span className="flex gap-3 w-40 items-center">
                     <MdDateRange />

@@ -12,8 +12,7 @@ const Navbar = () => {
     signOutUser()
       .then(() => {
         console.log("Sign Out Successfull");
-        navigate('/');
-
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -45,28 +44,32 @@ const Navbar = () => {
           About Us
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+          to="/addCourse"
+        >
+          Add Course
+        </NavLink>
+      </li>
       {user && (
         <>
           <li>
             <NavLink
               className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
-              to="/addCourse"
+              to="/manageCourses"
             >
-              Add Course
+              Manage Courses
             </NavLink>
           </li>
-          <li><NavLink
-            className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
-            to="/manageCourses"
-          >
-            Manage Courses
-          </NavLink></li>
-          <li><NavLink
-            className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
-            to="/myEnrolledCourses"
-          >
-            My Enrolled Courses
-          </NavLink></li>
+          <li>
+            <NavLink
+              className="hover:bg-transparent hover:text-secondary transform hover:scale-105 transition-all duration-100"
+              to="/myEnrolledCourses"
+            >
+              My Enrolled Courses
+            </NavLink>
+          </li>
         </>
       )}
     </>
@@ -125,7 +128,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-lg gap-3">{links}</ul>
+          <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
         </div>
         <div className="navbar-end flex gap-5">
           <div className="relative">
@@ -160,10 +163,14 @@ const Navbar = () => {
               ) : (
                 <>
                   <li>
-                    <NavLink className="py-1 px-2 rounded-sm" to="/login">Login</NavLink>
+                    <NavLink className="py-1 px-2 rounded-sm" to="/login">
+                      Login
+                    </NavLink>
                   </li>
                   <li>
-                    <NavLink className="py-1 px-2 rounded-sm" to="/signUp">Sign Up</NavLink>
+                    <NavLink className="py-1 px-2 rounded-sm" to="/signUp">
+                      Sign Up
+                    </NavLink>
                   </li>
                 </>
               )}

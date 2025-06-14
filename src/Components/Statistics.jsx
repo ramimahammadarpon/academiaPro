@@ -21,7 +21,7 @@ const TriangleBar = (props) => {
 
 const Statistics = () => {
   const { user } = useContext(AuthContext);
-  const { applicationPromise } = useApplicationApi();
+  const { enrollmentPromise } = useApplicationApi();
   const [courses, setCourses] = useState([]);
   const [enrollment, setEnrollment] = useState([]);
   console.log(enrollment);
@@ -30,7 +30,7 @@ const Statistics = () => {
       .then((res) => res.json())
       .then((data) => setCourses(data));
     if (user?.email && user?.accessToken) {
-      applicationPromise(user?.email).then((data) => {
+      enrollmentPromise().then((data) => {
         setEnrollment(data)
         // setLoading(false);
       });
@@ -39,8 +39,8 @@ const Statistics = () => {
   let data = [];
   if (user?.email) {
      data = [
-      { name: "Courses", value: courses.length },
-      { name: "Enrollments", value: enrollment.length },
+      { name: "Total Courses", value: courses.length },
+      { name: "Total Enrollments", value: enrollment.length },
     ];
   } else {
     data = [{ name: "Courses", value: courses.length }];

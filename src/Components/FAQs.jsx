@@ -14,7 +14,7 @@ const FAQs = () => {
         initial={{ x: -200, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 1.5 }}
-        className="flex flex-col-reverse md:flex-row gap-5 items-center"
+        className="flex flex-col-reverse lg:flex-row gap-5 items-center"
       >
         <div className="space-y-4">
           <div className="collapse collapse-arrow bg-base-100/30 backdrop-blur-md border border-base-300">

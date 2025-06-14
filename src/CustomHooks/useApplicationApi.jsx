@@ -7,8 +7,12 @@ const useApplicationApi = () => {
     const applicationPromise = email => {
         return axiosSecure.get(`enrollment?email=${email}`).then(res=> res.data);
     }
+    const enrollmentPromise = () => {
+        return axiosSecure.get(`enrollment`).then(res=> res.data);
+    }
     return {
-        applicationPromise
+        applicationPromise,
+        enrollmentPromise
     };
 };
 
