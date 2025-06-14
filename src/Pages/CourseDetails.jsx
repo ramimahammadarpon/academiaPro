@@ -71,9 +71,8 @@ const CourseDetails = () => {
       .post("https://course-management-system-server.vercel.app/enrollment", enrollment)
       .then((result) => {
         console.log(result.data);
-        return fetch(`https://course-management-system-server.vercel.app/enrollment?email=${user?.email}`);
+        return applicationPromise(user?.email);
       })
-      .then((res) => res.json())
       .then((data) => {
         setEnrolled(data);
         const existed = data.find((enroll) => enroll?.course_id === id);

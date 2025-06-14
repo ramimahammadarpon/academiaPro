@@ -1,16 +1,19 @@
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import React, { useContext, useState } from "react";
 import profilePic from "../assets/profilePic.jpg";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   console.log(user);
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
         console.log("Sign Out Successfull");
+        navigate('/');
+
       })
       .catch((err) => {
         console.log(err);
