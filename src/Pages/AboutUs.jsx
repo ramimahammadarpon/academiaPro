@@ -1,13 +1,13 @@
 import React from "react";
 import teacher1 from "../assets/teacher1.png";
 import teacher2 from "../assets/teacher2.png";
-import learning1 from '../assets/learning1.png';
-import learning2 from '../assets/learning2.png';
+import learning1 from "../assets/learning1.png";
+import learning2 from "../assets/learning2.png";
 
 import { motion } from "motion/react";
 const AboutUs = () => {
   return (
-    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-26">
+    <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-26 px-3">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-center font-semibold text-2xl text-primary mb-7">
           About Us
@@ -25,8 +25,8 @@ const AboutUs = () => {
           </p>
         </section>
 
-        <section className="mb-5 mt-20 flex lg:gap-20">
-          <div className="w-1/2">
+        <section className="mb-5 mt-20 flex flex-col lg:flex-row lg:gap-30">
+          <div className="lg:w-1/2">
             <h3 className="text-primary font-semibold text-lg">Our Vision</h3>
 
             <p>
@@ -43,34 +43,28 @@ const AboutUs = () => {
               that will further transform the way you lears and teach.
             </p>
           </div>
-          <div className="w-1/2">
-            <motion.div
+          <div className="lg:w-1/2 mt-4 lg:mt-0">
+            <motion.img
               initial={{ y: 0 }}
               animate={{ y: [0, 50, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
-            >
-              <img
-                src={teacher1}
-                className="max-w-xs border-8 border-t-0 border-r-0 border-primary rounded-xl"
-                alt=""
-              />
-            </motion.div>
-            <motion.div
-              initial={{ x: 0, y: -75 }}
-              animate={{ x: [120, 170, 120] }}
-              transition={{ duration: 5, repeat: Infinity }}
-            >
-              <img
-                src={teacher2}
-                className="max-w-xs border-8 border-t-0 border-l-0 border-secondary rounded-xl"
-                alt=""
-              />
-            </motion.div>
+              src={teacher1}
+              className="w-52 lg:w-80 border-8 border-t-0 border-r-0 border-primary rounded-xl"
+              alt=""
+            />
+            <motion.img
+              initial={{ x: 50, y: -50 }}
+              animate={{ x: [100, 150, 100] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              src={teacher2}
+              className="w-52 lg:w-80 border-8 border-t-0 border-l-0 border-secondary rounded-xl"
+              alt=""
+            />
           </div>
         </section>
 
-        <section className="mb-5 flex flex-row-reverse lg:gap-30">
-          <div className="w-1/2">
+        <section className="mb-5 flex flex-col lg:flex-row-reverse lg:gap-30">
+          <div className="lg:w-1/2">
             <h3 className="text-primary font-semibold text-lg">
               What Makes Us Different?
             </h3>
@@ -111,29 +105,23 @@ const AboutUs = () => {
             </ul>
           </div>
 
-          <div className="w-1/2">
-            <motion.div
-              initial={{ x: 100 }}
-              animate={{ x: [120,170,120] }}
+          <div className="lg:w-1/2 mt-4 lg:mt-0">
+            <motion.img
+              initial={{ x: 0 }}
+              animate={{ x: [100, 150, 100] }}
               transition={{ duration: 4, repeat: Infinity }}
-            >
-              <img
-                src={learning1}
-                className="max-w-xs border-8 border-t-0 border-r-0 border-primary rounded-xl"
-                alt=""
-              />
-            </motion.div>
-            <motion.div
-              initial={{ y: -50 }}
-              animate={{ y: [-50, -100, -50] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              <img
+              src={learning1}
+              className="w-52 lg:w-80 border-8 border-t-0 border-r-0 border-primary rounded-xl"
+              alt=""
+            />
+              <motion.img
+                initial={{ y: -50 }}
+                animate={{ y: [-50, -100, -50] }}
+                transition={{ duration: 4, repeat: Infinity }}
                 src={learning2}
-                className="max-w-xs border-8 border-t-0 border-l-0 border-secondary rounded-xl"
+                className="w-52 lg:w-80 border-8 border-t-0 border-l-0 border-secondary rounded-xl"
                 alt=""
               />
-            </motion.div>
           </div>
         </section>
 

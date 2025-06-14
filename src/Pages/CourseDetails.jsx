@@ -10,9 +10,11 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import Loading from "../Components/Loading";
 import { toast } from "react-toastify";
+import useApplicationApi from "../CustomHooks/useApplicationApi";
 
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
+  const {applicationPromise} = useApplicationApi();
   console.log(user);
   const { id } = useParams();
   console.log(id);
@@ -34,25 +36,25 @@ const CourseDetails = () => {
         setCourse(data);
         setEnrollmentCount(data.enrollment);
         setSeat(data.usedSeats);
+        setLoading(false);
       });
   }, [id]);
 
   useEffect(() => {
     document.title = "AcademiaPro | Course Details";
-    fetch(`http://localhost:3000/enrollment?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setEnrolled(data);
-        const existed = data.find((enroll) => enroll?.course_id === id);
-        setDataByEmail(existed);
-        if (existed) {
-          setAlreadyEnrolled(true);
-        } else {
-          setAlreadyEnrolled(false);
-        }
-        setLoading(false);
-      });
-  }, [user, id]);
+    if (user?.email && user?.token) {
+      applicationPromise(user.email).then((data) => {
+          setEnrolled(data);
+          const existed = data.find((enroll) => enroll?.course_id === id);
+          setDataByEmail(existed);
+          if (existed) {
+            setAlreadyEnrolled(true);
+          } else {
+            setAlreadyEnrolled(false);
+          }
+        });
+    }
+  }, [user?.email, id]);
 
   const handleEnrollment = () => {
     const enrollment = {
@@ -216,7 +218,11 @@ const CourseDetails = () => {
                       : `${
                           seat >= 10
                             ? `No Seats Left`
-                            : `${!user? `Login or Sign Up to Enroll`:`Enroll (Seats Remaining - ${10 - seat})`}`
+                            : `${
+                                !user
+                                  ? `Login or Sign Up to Enroll`
+                                  : `Enroll (Seats Remaining - ${10 - seat})`
+                              }`
                         }`}
                   </button>
                 )}

@@ -3,9 +3,10 @@ import { motion } from "motion/react";
 import React from "react";
 import { FaHourglassEnd } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Card = ({ course, index }) => {
+  const navigate = useNavigate();
   return (
     <motion.div
     initial={{opacity:0, scale:0}}
@@ -28,12 +29,12 @@ const Card = ({ course, index }) => {
             transition={{ duration: 0.5 }}
             className="absolute bg-[#160124]/50 w-full h-full flex justify-center items-center"
           >
-            <Link
-              to={`/courseDetails/${course._id}`}
-              className="px-4 py-2 bg-white text-black font-medium z-[1] rounded-sm"
+            <button
+            onClick={()=> navigate(`/courseDetails/${course._id}`)}
+              className="px-4 py-2 bg-white text-black font-medium z-[1] cursor-pointer rounded-sm"
             >
               View Details
-            </Link>
+            </button>
           </motion.div>
         </motion.div>
         <div className="p-4">
