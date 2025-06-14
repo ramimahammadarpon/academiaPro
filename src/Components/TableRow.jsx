@@ -20,7 +20,7 @@ const TableRow = ({ index, course, setCourses, courses }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/courses/${course._id}`)
+          .delete(`https://course-management-system-server.vercel.app/courses/${course._id}`)
           .then((res) => {
             console.log(res.data);
             const filteredCourses = courses.filter(
@@ -30,7 +30,7 @@ const TableRow = ({ index, course, setCourses, courses }) => {
             if (res.data.deletedCount === 1) {
               axios
                 .delete(
-                  `http://localhost:3000/enrollmentByCourse/${course._id}`
+                  `https://course-management-system-server.vercel.app/enrollmentByCourse/${course._id}`
                 )
                 .then((res) => {
                   console.log(res.data);

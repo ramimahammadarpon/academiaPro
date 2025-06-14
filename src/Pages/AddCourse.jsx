@@ -25,7 +25,7 @@ const AddCourse = () => {
     console.log("This is Handle add course", formVal);
 
     axios
-      .post("http://localhost:3000/courses", formVal)
+      .post("https://course-management-system-server.vercel.app/courses", formVal)
       .then((res) => {
         console.log(res.data);
         toast.success("Succesfully Added The Course", {

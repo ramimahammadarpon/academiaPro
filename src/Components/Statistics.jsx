@@ -26,7 +26,7 @@ const Statistics = () => {
   const [enrollment, setEnrollment] = useState([]);
   console.log(enrollment);
   useEffect(() => {
-    fetch("http://localhost:3000/courses")
+    fetch("https://course-management-system-server.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => setCourses(data));
     if (user?.email && user?.accessToken) {

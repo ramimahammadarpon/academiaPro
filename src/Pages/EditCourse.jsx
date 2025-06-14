@@ -14,7 +14,7 @@ const EditCourse = () => {
   console.log(id);
   useEffect(() => {
     document.title = "AcademiaPro | Edit Course";
-    fetch(`http://localhost:3000/courses/${id}`)
+    fetch(`https://course-management-system-server.vercel.app/courses/${id}`)
       .then((res) => res.json())
       .then((data) => setCourse(data));
   }, [id]);
@@ -26,7 +26,7 @@ const EditCourse = () => {
 
     console.log("This is Edit Course", updatedFormVal);
     axios
-      .patch(`http://localhost:3000/courses/${id}`, updatedFormVal)
+      .patch(`https://course-management-system-server.vercel.app/courses/${id}`, updatedFormVal)
       .then((res) => {
         console.log(res.data);
         toast.success("Updated Course Info Successfully", {

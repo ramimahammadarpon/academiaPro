@@ -13,7 +13,7 @@ const ManageCourses = () => {
   console.log(courses);
   useEffect(() => {
     document.title = "AcademiaPro | Manage Courses";
-    fetch(`http://localhost:3000/courses?email=${user?.email}`)
+    fetch(`https://course-management-system-server.vercel.app/courses?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);

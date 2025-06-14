@@ -30,7 +30,7 @@ const CourseDetails = () => {
   console.log(enrolled);
   console.log(alreadyEnrolled);
   useEffect(() => {
-    fetch(`http://localhost:3000/courses/${id}`)
+    fetch(`https://course-management-system-server.vercel.app/courses/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCourse(data);
@@ -42,7 +42,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     document.title = "AcademiaPro | Course Details";
-    if (user?.email && user?.token) {
+    if (user?.email && user?.accessToken) {
       applicationPromise(user.email).then((data) => {
           setEnrolled(data);
           const existed = data.find((enroll) => enroll?.course_id === id);
@@ -68,10 +68,10 @@ const CourseDetails = () => {
     console.log(enrollment);
 
     axios
-      .post("http://localhost:3000/enrollment", enrollment)
+      .post("https://course-management-system-server.vercel.app/enrollment", enrollment)
       .then((result) => {
         console.log(result.data);
-        return fetch(`http://localhost:3000/enrollment?email=${user?.email}`);
+        return fetch(`https://course-management-system-server.vercel.app/enrollment?email=${user?.email}`);
       })
       .then((res) => res.json())
       .then((data) => {
@@ -85,7 +85,7 @@ const CourseDetails = () => {
           setAlreadyEnrolled(false);
         }
         axios
-          .patch(`http://localhost:3000/courses/${id}`, {
+          .patch(`https://course-management-system-server.vercel.app/courses/${id}`, {
             enrollment: enrollmentCount + 1,
             usedSeats: seat + 1,
           })
@@ -113,7 +113,7 @@ const CourseDetails = () => {
     console.log("congo");
 
     axios
-      .delete(`http://localhost:3000/enrollment/${dataByEmail._id}`)
+      .delete(`https://course-management-system-server.vercel.app/enrollment/${dataByEmail._id}`)
       .then((res) => {
         if (res.data.deletedCount) {
           setAlreadyEnrolled(false);
@@ -122,7 +122,7 @@ const CourseDetails = () => {
           );
           setEnrolled(deletedData);
           axios
-            .patch(`http://localhost:3000/courses/${id}`, {
+            .patch(`https://course-management-system-server.vercel.app/courses/${id}`, {
               enrollment: enrollmentCount - 1,
               usedSeats: seat - 1,
             })

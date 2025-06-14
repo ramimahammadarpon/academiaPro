@@ -12,7 +12,7 @@ const Home = () => {
   const [cards, setCards] = useState([]);
   useEffect(() => {
     document.title = "AcademiaPro | Home";
-    fetch("http://localhost:3000/latestCourses")
+    fetch("https://course-management-system-server.vercel.app/latestCourses")
       .then((res) => res.json())
       .then((data) => {
         setCards(data);

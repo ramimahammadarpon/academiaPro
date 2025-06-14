@@ -8,7 +8,7 @@ const EnrollmentTable = ({ index, enroll, enrollment, setEnrollment }) => {
   const [seat, setSeat] = useState();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/courses/${enroll.course_id}`)
+    fetch(`https://course-management-system-server.vercel.app/courses/${enroll.course_id}`)
       .then((res) => res.json())
       .then((data) => {
         setEnrollmentCount(data.enrollment);
@@ -28,7 +28,7 @@ const EnrollmentTable = ({ index, enroll, enrollment, setEnrollment }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/enrollment/${enroll._id}`)
+          .delete(`https://course-management-system-server.vercel.app/enrollment/${enroll._id}`)
           .then((res) => {
             if (res.data.deletedCount) {
               const deletedData = enrollment.filter(
@@ -36,7 +36,7 @@ const EnrollmentTable = ({ index, enroll, enrollment, setEnrollment }) => {
               );
               setEnrollment(deletedData);
               axios
-                .patch(`http://localhost:3000/courses/${enroll.course_id}`, {
+                .patch(`https://course-management-system-server.vercel.app/courses/${enroll.course_id}`, {
                   enrollment: enrollmentCount - 1,
                   usedSeats: seat - 1,
                 })
