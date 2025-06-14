@@ -1,4 +1,5 @@
-import Card from './card';
+import Card from "./Card";
+
 
 const LatestCourses = ({courses}) => {
     return (

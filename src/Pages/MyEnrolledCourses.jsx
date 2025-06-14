@@ -13,7 +13,7 @@ const MyEnrolledCourses = () => {
   const [enrollment, setEnrollment] = useState([]);
   const [loading, setLoading] = useState(true);
   const { applicationPromise } = useApplicationApi();
-  console.log(enrollment);
+  // console.log(enrollment);
   useEffect(() => {
     document.title = "AcademiaPro | My Enrolled Courses";
     if (user?.email && user?.accessToken) {

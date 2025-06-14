@@ -28,7 +28,6 @@ const Banner = ({cards}) => {
       }
     ]
   };
-  console.log(cards)
 
   return (
     <div className="mx-3">

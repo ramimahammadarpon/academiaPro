@@ -19,8 +19,8 @@ const SignUp = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
-  console.log(location?.state);
+  // console.log(location);
+  // console.log(location?.state);
   const from = location.state || "/";
   const { googleSignUp, gitHubSignUp, signUpwithEmail, setUser, user } =
     useContext(AuthContext);

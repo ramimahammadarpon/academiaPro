@@ -15,9 +15,9 @@ import useApplicationApi from "../CustomHooks/useApplicationApi";
 const CourseDetails = () => {
   const { user } = useContext(AuthContext);
   const {applicationPromise} = useApplicationApi();
-  console.log(user);
+  // console.log(user);
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [course, setCourse] = useState();
   const [enrolled, setEnrolled] = useState([]);
   const [alreadyEnrolled, setAlreadyEnrolled] = useState(false);
@@ -26,9 +26,9 @@ const CourseDetails = () => {
   const [dataByEmail, setDataByEmail] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log(course);
-  console.log(enrolled);
-  console.log(alreadyEnrolled);
+  // console.log(course);
+  // console.log(enrolled);
+  // console.log(alreadyEnrolled);
   useEffect(() => {
     fetch(`https://course-management-system-server.vercel.app/courses/${id}`)
       .then((res) => res.json())
@@ -65,18 +65,18 @@ const CourseDetails = () => {
       creator_email: course.email,
       user_email: user?.email,
     };
-    console.log(enrollment);
+    // console.log(enrollment);
 
     axios
       .post("https://course-management-system-server.vercel.app/enrollment", enrollment)
       .then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         return applicationPromise(user?.email);
       })
       .then((data) => {
         setEnrolled(data);
         const existed = data.find((enroll) => enroll?.course_id === id);
-        console.log(existed);
+        // console.log(existed);
         setDataByEmail(existed);
         if (existed) {
           setAlreadyEnrolled(true);
@@ -89,7 +89,7 @@ const CourseDetails = () => {
             usedSeats: seat + 1,
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.modifiedCount === 1) {
               setEnrollmentCount(enrollmentCount + 1);
               setSeat(seat + 1);

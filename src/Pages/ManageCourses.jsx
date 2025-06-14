@@ -10,7 +10,7 @@ const ManageCourses = () => {
   const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(courses);
+  // console.log(courses);
   useEffect(() => {
     document.title = "AcademiaPro | Manage Courses";
     fetch(`https://course-management-system-server.vercel.app/courses?email=${user?.email}`)

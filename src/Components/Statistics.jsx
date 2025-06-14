@@ -24,7 +24,7 @@ const Statistics = () => {
   const { enrollmentPromise } = useApplicationApi();
   const [courses, setCourses] = useState([]);
   const [enrollment, setEnrollment] = useState([]);
-  console.log(enrollment);
+  // console.log(enrollment);
   useEffect(() => {
     fetch("https://course-management-system-server.vercel.app/courses")
       .then((res) => res.json())
