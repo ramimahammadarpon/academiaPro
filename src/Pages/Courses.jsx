@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Card from "../Components/card";
 import Loading from "../Components/Loading";
+import Card from "../Components/Card";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    document.title = "AcademiaPro | Courses";
     fetch("https://course-management-system-server.vercel.app/courses")
       .then((res) => res.json())
       .then((data) => {

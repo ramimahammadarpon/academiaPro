@@ -20,6 +20,7 @@ const Footer = () => {
             <h3 className="font-medium mb-2 text-primary text-lg">Legal</h3>
           <a href="#">Terms and Services</a>
           <a href="#">Privacy Policy</a>
+          <a href="#">Other Documentations</a>
         </div>
         <div className="lg:flex justify-end items-end">
           <div className="">

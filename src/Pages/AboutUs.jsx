@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import teacher1 from "../assets/teacher1.png";
 import teacher2 from "../assets/teacher2.png";
 import learning1 from "../assets/learning1.png";
@@ -6,6 +6,9 @@ import learning2 from "../assets/learning2.png";
 
 import { motion } from "motion/react";
 const AboutUs = () => {
+  useEffect(() => {
+    document.title = "AcademiaPro | About Us";
+  }, []);
   return (
     <div className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-26 px-3">
       <div className="max-w-7xl mx-auto">
