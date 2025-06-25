@@ -45,7 +45,6 @@ The project is a Course Management System where users can browse available cours
 | slick-carousel     | ^1.8.1     |
 | sweetalert2        | ^11.22.0   |
 | tailwindcss        | ^4.1.8     |
-<br><br>
 
 
 ## Run Locally
