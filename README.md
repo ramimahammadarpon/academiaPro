@@ -49,3 +49,23 @@ https://b11a11-course-management-system-ramim.netlify.app/
 | sweetalert2        | ^11.22.0   |
 | tailwindcss        | ^4.1.8     |
 
+
+
+# 1. Clone the repository
+git clone https://github.com/ramimahammadarpon/academiaPro.git
+
+# 2. Navigate into the project directory
+cd academiaPro
+
+# 3. Install frontend dependencies
+npm install
+
+# 4. Set up environment variables
+# 👉 Create a .env file in the root directory and add the following:
+# VITE_API_KEY=your_api_key_here
+# VITE_FIREBASE_CONFIG=your_firebase_config
+# (Add all other required env variables listed in the documentation)
+
+# 5. Start the development server
+npm run dev
+
