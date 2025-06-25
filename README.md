@@ -49,7 +49,6 @@ The project is a Course Management System where users can browse available cours
 
 ## Run Locally
 
-For Frontend
 
 ```bash
 # Clone the repository
