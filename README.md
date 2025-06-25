@@ -53,7 +53,7 @@ https://b11a11-course-management-system-ramim.netlify.app/
 
 ## Installing as a package
 
-#For Frontend
+For Frontend
 
 ```bash
 # Clone the repository
