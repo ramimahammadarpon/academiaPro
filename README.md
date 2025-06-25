@@ -2,6 +2,10 @@
 
 The project is a Course Management System where users can browse available courses, enroll in them, and view their enrolled courses. Developing this project helps solidify core concepts like JWT authentication, Axios interceptors, MongoDB queries, and secure CRUD operations, all in a practical, real-world setting. The system works by allowing users to log in, receive a JWT token, browse available courses, and enroll with a single click. They can also view a list of courses they’ve enrolled in, with all interactions secured via protected APIs.
 
+## 🖼️ Screenshot
+
+![academiaPro Screenshot](https://your-screenshot-link.com/academiaPro.png)
+
 ## Live URL:
 
 https://b11a11-course-management-system-ramim.netlify.app/
