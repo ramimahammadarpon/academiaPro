@@ -4,7 +4,7 @@ The project is a Course Management System where users can browse available cours
 
 ## 🖼️ Screenshot
 
-![academiaPro Screenshot](https://your-screenshot-link.com/academiaPro.png)
+![academiaPro Screenshot](https://i.ibb.co/cStbmj3J/image.png)
 
 ## Live URL:
 
