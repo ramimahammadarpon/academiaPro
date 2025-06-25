@@ -25,20 +25,23 @@ https://b11a11-course-management-system-ramim.netlify.app/
 7. Edit Course info
 8. remove enrollments
 
-## npm packages:
+## 📦 Dependencies
 
-"@tailwindcss/vite": "^4.1.8",
-"axios": "^1.9.0",
-"firebase": "^11.9.0",
-"lottie-react": "^2.4.1",
-"motion": "^12.16.0",
-"react": "^19.1.0",
-"react-dom": "^19.1.0",
-"react-icons": "^5.5.0",
-"react-router": "^7.6.2",
-"react-slick": "^0.30.3",
-"react-toastify": "^11.0.5",
-"recharts": "^2.15.3",
-"slick-carousel": "^1.8.1",
-"sweetalert2": "^11.22.0",
-"tailwindcss": "^4.1.8"
+| Package            | Version    |
+|--------------------|------------|
+| @tailwindcss/vite  | ^4.1.8     |
+| axios              | ^1.9.0     |
+| firebase           | ^11.9.0    |
+| lottie-react       | ^2.4.1     |
+| motion             | ^12.16.0   |
+| react              | ^19.1.0    |
+| react-dom          | ^19.1.0    |
+| react-icons        | ^5.5.0     |
+| react-router       | ^7.6.2     |
+| react-slick        | ^0.30.3    |
+| react-toastify     | ^11.0.5    |
+| recharts           | ^2.15.3    |
+| slick-carousel     | ^1.8.1     |
+| sweetalert2        | ^11.22.0   |
+| tailwindcss        | ^4.1.8     |
+
