@@ -48,10 +48,10 @@ https://b11a11-course-management-system-ramim.netlify.app/
 | slick-carousel     | ^1.8.1     |
 | sweetalert2        | ^11.22.0   |
 | tailwindcss        | ^4.1.8     |
+<br><br>
 
 
-
-Clone the repository
+<h3>Clone the repository</h3>
 ```
 git clone https://github.com/ramimahammadarpon/academiaPro.git
 ```
