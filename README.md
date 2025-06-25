@@ -53,6 +53,8 @@ https://b11a11-course-management-system-ramim.netlify.app/
 
 ## Installing as a package
 
+#For Frontend
+
 ```bash
 # Clone the repository
 git clone https://github.com/ramimahammadarpon/academiaPro.git
@@ -65,4 +67,5 @@ npm install
 
 # Start the frontend development server
 npm run dev
+```
 
