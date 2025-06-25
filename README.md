@@ -6,9 +6,6 @@ The project is a Course Management System where users can browse available cours
 
 ![academiaPro Screenshot](https://i.ibb.co/cStbmj3J/image.png)
 
-## Live URL:
-
-https://b11a11-course-management-system-ramim.netlify.app/
 
 ## 🛠️ Built With
 
@@ -68,4 +65,8 @@ npm install
 # Start the frontend development server
 npm run dev
 ```
+
+## Live URL:
+
+https://b11a11-course-management-system-ramim.netlify.app/
 
