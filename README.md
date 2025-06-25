@@ -6,6 +6,14 @@ The project is a Course Management System where users can browse available cours
 
 https://b11a11-course-management-system-ramim.netlify.app/
 
+## 🛠️ Built With
+
+- React.js
+- Node.js
+- Express.js
+- MongoDB
+- Tailwind CSS
+
 ## Key Features:
 
 1. Show and Hide Password Upon Clicking the Eye button.
