@@ -51,10 +51,10 @@ https://b11a11-course-management-system-ramim.netlify.app/
 <br><br>
 
 
-<h3>Clone the repository</h3>
-```
-git clone https://github.com/ramimahammadarpon/academiaPro.git
-```
+## Installing as a package
+
+```bash
+yarn add react-responsive-carousel
 
 # Navigate to the project directory
 cd academiaPro
