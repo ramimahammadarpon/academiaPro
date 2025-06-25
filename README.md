@@ -51,7 +51,7 @@ https://b11a11-course-management-system-ramim.netlify.app/
 <br><br>
 
 
-## Installing as a package
+## Run Locally
 
 For Frontend
 
