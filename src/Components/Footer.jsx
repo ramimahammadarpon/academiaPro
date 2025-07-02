@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
         <div className="text-secondary px-5 flex flex-col">
             <h3 className="font-medium mb-2 text-primary text-lg">Legal</h3>
-          <a href="#">Terms and Services</a>
+          <Link to="termsAndServices">Terms and Services</Link>
           <a href="#">Privacy Policy</a>
           <a href="#">Other Documentations</a>
         </div>

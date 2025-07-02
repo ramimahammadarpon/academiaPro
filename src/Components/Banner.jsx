@@ -10,7 +10,7 @@ const Banner = ({cards}) => {
     speed: 500,
     autoplay: true,
     autoplaySpeed: 1200,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
     responsive: [

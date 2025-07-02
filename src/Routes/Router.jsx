@@ -13,6 +13,7 @@ import EditCourse from "../Pages/EditCourse";
 import MyEnrolledCourses from "../Pages/MyEnrolledCourses";
 import Error from "../Pages/Error";
 import AboutUs from "../Pages/AboutUs";
+import TermsAndServices from "../Pages/TermsAndServices";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
             {
                 path: 'aboutUs',
                 element: <AboutUs></AboutUs>
+            },
+            {
+                path: 'termsAndServices',
+                Component: TermsAndServices
             }
         ]
     }, 
