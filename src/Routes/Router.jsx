@@ -14,6 +14,7 @@ import MyEnrolledCourses from "../Pages/MyEnrolledCourses";
 import Error from "../Pages/Error";
 import AboutUs from "../Pages/AboutUs";
 import TermsAndServices from "../Pages/TermsAndServices";
+import PrivacyPolicy from "../Pages/PrivacyPolicy";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path: 'termsAndServices',
                 Component: TermsAndServices
+            },
+            {
+                path: 'privacyPolicy',
+                Component: PrivacyPolicy
             }
         ]
     }, 
