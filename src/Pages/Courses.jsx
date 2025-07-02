@@ -5,15 +5,22 @@ import Card from "../Components/Card";
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState("dsc");
+
+  console.log(sort);
+
   useEffect(() => {
+    setLoading(true);
     document.title = "AcademiaPro | Courses";
-    fetch("https://course-management-system-server.vercel.app/courses")
+    fetch(
+      `https://course-management-system-server.vercel.app/courses?sort=${sort}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);
         setLoading(false);
       });
-  }, []);
+  }, [sort]);
   return (
     <div>
       {loading ? (
@@ -23,8 +30,16 @@ const Courses = () => {
           <h1 className="text-center font-semibold text-2xl text-primary mb-7">
             Courses
           </h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto">
+            <select
+            onChange={(e) => setSort(e.target.value)}
+            className="select select-ghost max-w-7xl bg-transparent focus:bg-transparent mb-4"
+          >
+            <option value="dsc">latest to oldest</option>
+            <option value="asc">oldest to latest</option>
+          </select>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-7xl mx-auto">
             {courses.map((course, index) => (
               <Card key={index} course={course}></Card>
             ))}
