@@ -27,7 +27,7 @@ const SliderCard = ({ card }) => {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           style={{ backgroundImage: `url(${photoURL}` }}
-          className={`lg:h-[80vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-no-repeat bg-cover bg-center relative overflow-hidden`}
+          className={`lg:h-[70vh] mg:h-[60vh] h-[50vh] rounded-2xl bg-no-repeat bg-cover bg-center relative overflow-hidden`}
         >
           <div className="w-full h-full bg-primary/20 backdrop-blur-xs flex lg:hidden flex-col justify-center items-center">
             <div className="w-2/3">
