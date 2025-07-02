@@ -15,6 +15,7 @@ import Error from "../Pages/Error";
 import AboutUs from "../Pages/AboutUs";
 import TermsAndServices from "../Pages/TermsAndServices";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
+import OtherDocumentations from "../Pages/OtherDocumentations";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             {
                 path: 'privacyPolicy',
                 Component: PrivacyPolicy
+            },
+            {
+                path: 'otherDocumentations',
+                Component: OtherDocumentations
             }
         ]
     }, 

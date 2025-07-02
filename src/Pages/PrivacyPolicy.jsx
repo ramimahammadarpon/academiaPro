@@ -3,7 +3,7 @@ import React from "react";
 const PrivacyPolicy = () => {
   return (
     <section className="relative bg-gradient-to-b from-secondary/40 to-primary/60 min-h-screen py-20 lg:py-26">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl md:mx-10 lg:mx-auto mx-5">
         <h1 className="text-2xl font-semibold text-primary mb-7">
           Privacy Policy
         </h1>
